@@ -5,16 +5,17 @@ import android.os.AsyncTask;
 
 import com.tassioauad.gamecatalog.R;
 
-import retrofit.Retrofit;
-
 public abstract class GenericAsyncTask<PARAM, POGRESS, RETURN> extends AsyncTask<PARAM, POGRESS, AsyncTaskResult<RETURN>> {
 
     private Context context;
-    private ApiResultListener listener;
+    private ApiResultListener apiResultListener;
 
-    public GenericAsyncTask(Context context, ApiResultListener listener) {
+    public GenericAsyncTask(Context context) {
         this.context = context;
-        this.listener = listener;
+    }
+
+    public void setApiResultListener(ApiResultListener listener) {
+        this.apiResultListener = listener;
     }
 
     public Context getContext() {
@@ -25,14 +26,18 @@ public abstract class GenericAsyncTask<PARAM, POGRESS, RETURN> extends AsyncTask
         return context.getString(R.string.giantbombapi_baseurl);
     }
 
+    public String getApiKey() {
+        return context.getString(R.string.giantbombapi_key);
+    }
+
     @Override
     protected void onPostExecute(AsyncTaskResult<RETURN> returnAsyncTaskResult) {
         if (returnAsyncTaskResult.getResult() != null) {
-            listener.onResult(returnAsyncTaskResult.getResult());
+            apiResultListener.onResult(returnAsyncTaskResult.getResult());
         } else if (returnAsyncTaskResult.getError() != null) {
-            listener.onException(returnAsyncTaskResult.getError());
+            apiResultListener.onException(returnAsyncTaskResult.getError());
         } else {
-            listener.onResult(returnAsyncTaskResult.getResult());
+            apiResultListener.onResult(returnAsyncTaskResult.getResult());
         }
     }
 

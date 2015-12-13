@@ -1,4 +1,4 @@
-package com.tassioauad.gamecatalog.model.api;
+package com.tassioauad.gamecatalog.model.api.resource;
 
 import com.tassioauad.gamecatalog.model.entity.Platform;
 
