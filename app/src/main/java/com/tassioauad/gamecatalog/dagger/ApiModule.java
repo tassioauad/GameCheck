@@ -7,10 +7,14 @@ import com.google.gson.GsonBuilder;
 import com.tassioauad.gamecatalog.R;
 import com.tassioauad.gamecatalog.model.api.GameApi;
 import com.tassioauad.gamecatalog.model.api.ItemTypeAdapterFactory;
+import com.tassioauad.gamecatalog.model.api.PlatformApi;
 import com.tassioauad.gamecatalog.model.api.asynctask.impl.GameSearchByNameAsyncTask;
 import com.tassioauad.gamecatalog.model.api.asynctask.impl.GameSearchByPlatformAsyncTask;
 import com.tassioauad.gamecatalog.model.api.asynctask.impl.GameSearchLastsAsyncTask;
+import com.tassioauad.gamecatalog.model.api.asynctask.impl.PlatformSearchByNameAsyncTask;
+import com.tassioauad.gamecatalog.model.api.asynctask.impl.PlatformSearchLastsAsyncTask;
 import com.tassioauad.gamecatalog.model.api.impl.GameApiImpl;
+import com.tassioauad.gamecatalog.model.api.impl.PlatformApiImpl;
 import com.tassioauad.gamecatalog.model.api.resource.GameResource;
 import com.tassioauad.gamecatalog.model.api.resource.PlatformResource;
 
@@ -29,12 +33,10 @@ public class ApiModule {
                 .setDateFormat("yyyy'-'MM'-'dd HH':'mm':'ss")
                 .create();
 
-        Retrofit retrofit = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .baseUrl(context.getString(R.string.giantbombapi_baseurl))
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-
-        return retrofit;
     }
 
     @Provides
@@ -57,6 +59,17 @@ public class ApiModule {
                 new GameSearchByPlatformAsyncTask(context, provideGameResource(context));
 
         return new GameApiImpl(context, gameSearchLastsAsyncTask, gameSearchByNameAsyncTask, gameSearchByPlatformAsyncTask);
+    }
+
+    @Provides
+    public PlatformApi providePlatformApi(Context context) {
+        PlatformSearchByNameAsyncTask platformSearchByNameAsyncTask =
+                new PlatformSearchByNameAsyncTask(context, providePlatformResource(context));
+        PlatformSearchLastsAsyncTask platformSearchLastsAsyncTask =
+                new PlatformSearchLastsAsyncTask(context, providePlatformResource(context));
+
+        return new PlatformApiImpl(context, platformSearchByNameAsyncTask, platformSearchLastsAsyncTask);
+
     }
 
 }
