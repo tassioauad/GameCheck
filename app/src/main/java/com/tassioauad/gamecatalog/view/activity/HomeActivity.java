@@ -13,6 +13,7 @@ import com.tassioauad.gamecatalog.dagger.HomeViewModule;
 import com.tassioauad.gamecatalog.presenter.HomePresenter;
 import com.tassioauad.gamecatalog.view.HomeView;
 import com.tassioauad.gamecatalog.view.fragment.LastsGameFragment;
+import com.tassioauad.gamecatalog.view.fragment.LastsPlatformFragment;
 
 import javax.inject.Inject;
 
@@ -53,7 +54,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
                 case 0:
                     return new LastsGameFragment();
                 case 1:
-                    return new LastsGameFragment();
+                    return new LastsPlatformFragment();
             }
         }
 
