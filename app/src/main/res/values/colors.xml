@@ -5,4 +5,6 @@
     <color name="deep_purple_700">#512DA8</color>
     <color name="purple_a400">#D500F9</color>
     <color name="gray_50">#FAFAFA</color>
+    <color name="gray_900">#212121</color>
+    <color name="gray_800">#424242</color>
 </resources>
