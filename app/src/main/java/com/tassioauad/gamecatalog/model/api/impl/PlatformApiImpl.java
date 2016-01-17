@@ -1,6 +1,7 @@
 package com.tassioauad.gamecatalog.model.api.impl;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import com.tassioauad.gamecatalog.model.api.GenericApi;
 import com.tassioauad.gamecatalog.model.api.PlatformApi;
@@ -22,7 +23,7 @@ public class PlatformApiImpl extends GenericApi implements PlatformApi {
     public void searchLasts(Integer count) {
         verifyServiceResultListener();
         platformSearchLastsAsyncTask.setApiResultListener(getServiceResultListener());
-        platformSearchLastsAsyncTask.execute();
+        platformSearchLastsAsyncTask.execute(count);
     }
 
     @Override
@@ -30,5 +31,15 @@ public class PlatformApiImpl extends GenericApi implements PlatformApi {
         verifyServiceResultListener();
         platformSearchByNameAsyncTask.setApiResultListener(getServiceResultListener());
         platformSearchByNameAsyncTask.execute(name);
+    }
+
+    @Override
+    public void cancelAllService() {
+        if(platformSearchByNameAsyncTask != null && platformSearchByNameAsyncTask.getStatus() == AsyncTask.Status.RUNNING) {
+            platformSearchByNameAsyncTask.cancel(true);
+        }
+        if(platformSearchLastsAsyncTask != null && platformSearchLastsAsyncTask.getStatus() == AsyncTask.Status.RUNNING) {
+            platformSearchLastsAsyncTask.cancel(true);
+        }
     }
 }

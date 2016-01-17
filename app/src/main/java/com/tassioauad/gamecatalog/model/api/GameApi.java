@@ -3,7 +3,7 @@ package com.tassioauad.gamecatalog.model.api;
 
 import com.tassioauad.gamecatalog.model.entity.Platform;
 
-public interface GameApi {
+public interface GameApi extends AsyncService {
 
     void searchLasts(Integer count);
 

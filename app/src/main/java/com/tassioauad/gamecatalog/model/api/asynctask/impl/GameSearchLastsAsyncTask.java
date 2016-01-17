@@ -11,15 +11,17 @@ import com.tassioauad.gamecatalog.model.entity.Game;
 import java.io.IOException;
 import java.util.List;
 
+import retrofit.Call;
 import retrofit.Response;
 
 import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
 import static java.net.HttpURLConnection.HTTP_OK;
 
-public class GameSearchLastsAsyncTask extends GenericAsyncTask<Void, Void, List<Game>> {
+public class GameSearchLastsAsyncTask extends GenericAsyncTask<Integer, Void, List<Game>> {
 
     private GameResource gameResource;
-    private final int NUMBER_OF_GAMES = 20;
+    private final String sort = "original_release_date:desc";
+    private final String format = "json";
 
     public GameSearchLastsAsyncTask(Context context, GameResource gameResource) {
         super(context);
@@ -27,10 +29,11 @@ public class GameSearchLastsAsyncTask extends GenericAsyncTask<Void, Void, List<
     }
 
     @Override
-    protected AsyncTaskResult<List<Game>> doInBackground(Void... params) {
+    protected AsyncTaskResult<List<Game>> doInBackground(Integer... params) {
 
         try {
-            Response<List<Game>> response = gameResource.searchLasts(getApiKey(), NUMBER_OF_GAMES).execute();
+            Call<List<Game>> listCall = gameResource.searchLasts(getApiKey(), params[0], sort, format);
+            Response<List<Game>> response = listCall.execute();
             switch (response.code()) {
                 case HTTP_OK:
                     return new AsyncTaskResult<>(response.body());

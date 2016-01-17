@@ -6,17 +6,20 @@ import java.util.List;
 
 import retrofit.Call;
 import retrofit.http.GET;
-import retrofit.http.Path;
+import retrofit.http.Query;
 
 public interface GameResource {
 
-    @GET("/games/?api_key={apikey}&format=json&limit={count}&sort=original_release_date:desc")
-    Call<List<Game>> searchLasts(@Path("apikey") String apiKey, @Path("count") Integer count);
+    @GET("/api/games/")
+    Call<List<Game>> searchLasts(@Query("api_key") String apiKey, @Query("limit") Integer count,
+                                 @Query("sort") String sort, @Query("format") String format);
 
-    @GET("/games/?api_key={apikey}&format=json&sort=original_release_date:desc&name={name}")
-    Call<List<Game>> searchByName(@Path("apikey") String apiKey, @Path("name") String name);
+    @GET("/api/games/")
+    Call<List<Game>> searchByName(@Query("api_key") String apiKey, @Query("name") String name,
+                                  @Query("sort") String sort, @Query("format") String format);
 
-    @GET("/games/?api_key={apikey}&format=json&sort=original_release_date:desc&platforms={platformId}")
-    Call<List<Game>> searchByPlatform(@Path("apikey") String apiKey, @Path("platformId") Long platformId);
+    @GET("/api/games/")
+    Call<List<Game>> searchByPlatform(@Query("api_key") String apiKey, @Query("platforms") Long platformId,
+                                      @Query("sort") String sort, @Query("format") String format);
 
 }

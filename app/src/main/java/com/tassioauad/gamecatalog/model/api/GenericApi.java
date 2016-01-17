@@ -5,7 +5,7 @@ import android.content.Context;
 import com.tassioauad.gamecatalog.model.api.asynctask.ApiResultListener;
 
 
-public abstract class GenericApi {
+public abstract class GenericApi implements AsyncService {
 
     private Context context;
 
