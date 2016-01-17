@@ -13,6 +13,7 @@ import com.tassioauad.gamecatalog.model.entity.Game;
 import junit.framework.TestCase;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -20,6 +21,7 @@ import retrofit.Retrofit;
 public class GameSearchLastsAsyncTaskTest extends AndroidTestCase {
 
     GameResource gameResource;
+    final Integer NUMBER_OF_GAMES = 20;
 
     @Override
     protected void setUp() throws Exception {
@@ -38,7 +40,7 @@ public class GameSearchLastsAsyncTaskTest extends AndroidTestCase {
     }
 
     public void testDoInBackground() throws Exception {
-
+        final CountDownLatch signal = new CountDownLatch(1);
         GameSearchLastsAsyncTask gameSearchLastsAsyncTask =
                 new GameSearchLastsAsyncTask(getContext(), gameResource);
 
@@ -47,15 +49,18 @@ public class GameSearchLastsAsyncTaskTest extends AndroidTestCase {
             public void onResult(Object object) {
                 List<Game> gameList = (List<Game>) object;
                 assertTrue(gameList.size() > 0);
+                signal.countDown();
             }
 
             @Override
             public void onException(Exception exception) {
                 fail(exception.getMessage());
+                signal.countDown();
             }
         });
 
-        gameSearchLastsAsyncTask.execute();
+        gameSearchLastsAsyncTask.execute(NUMBER_OF_GAMES);
+        signal.await();
 
     }
 
