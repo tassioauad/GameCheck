@@ -37,6 +37,8 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.ViewHo
 
         if (game.getImage() != null && game.getImage().getMediumUrl() != null) {
             Picasso.with(holder.imageViewPhoto.getContext()).load(game.getImage().getMediumUrl()).placeholder(R.drawable.nophoto).into(holder.imageViewPhoto);
+        } else {
+            holder.imageViewPhoto.setImageDrawable(holder.imageViewPhoto.getContext().getResources().getDrawable(R.drawable.nophoto));
         }
 
         holder.textViewName.setText(game.getName());

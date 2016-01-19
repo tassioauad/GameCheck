@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <color name="light_blue">#0288D1</color>
-    <color name="dark_blue">#0A2463</color>
+    <color name="blue">#0A2463</color>
+    <color name="dark_blue">#061438</color>
     <color name="red">#FB3640</color>
     <color name="red_alpha">#3cFB3640</color>
     <color name="light_gray">#E2E2E2</color>
     <color name="light_gray_alpha">#b7e2e2e2</color>
     <color name="dark_gray">#605F5E</color>
     <color name="black_alpha">#92030a1d</color>
+
 </resources>
