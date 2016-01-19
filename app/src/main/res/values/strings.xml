@@ -6,8 +6,8 @@
     <string name="giantbombapi_baseurl">http://www.giantbomb.com/api/</string>
 
     <!-- LastsGamesFragment -->
-    <string name="fragment_lastsgame_title">Games</string>
+    <string name="fragment_lastsgame_title">Lasts Games</string>
 
     <!-- LastsPlatformFragment -->
-    <string name="fragment_lastsplatform_title">Platforms</string>
+    <string name="fragment_lastsplatform_title">Lasts Platforms</string>
 </resources>

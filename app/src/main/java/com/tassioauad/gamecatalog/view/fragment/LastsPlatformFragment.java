@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 import com.tassioauad.gamecatalog.GameCatalogApplication;
 import com.tassioauad.gamecatalog.R;
 import com.tassioauad.gamecatalog.dagger.LastsPlatformViewModule;
+import com.tassioauad.gamecatalog.model.entity.Platform;
 import com.tassioauad.gamecatalog.presenter.LastsPlatformPresenter;
 import com.tassioauad.gamecatalog.view.LastsPlatformView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -33,5 +36,25 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
         presenter.init();
 
         return view;
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void showPlatforms(List<Platform> platformList) {
+
+    }
+
+    @Override
+    public void dismissLoading() {
+
+    }
+
+    @Override
+    public void warnCouldNotLoadPlatforms() {
+
     }
 }
