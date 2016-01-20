@@ -19,10 +19,6 @@ public class LastsGamePresenter {
         this.gameApi = gameApi;
     }
 
-    public void init() {
-        loadLastsGames();
-    }
-
     public void loadLastsGames() {
         view.showLoading();
         gameApi.setServiceResultListener(new ApiResultListener() {

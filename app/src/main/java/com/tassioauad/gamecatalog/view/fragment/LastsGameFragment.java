@@ -1,6 +1,7 @@
 package com.tassioauad.gamecatalog.view.fragment;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -23,6 +24,7 @@ import com.tassioauad.gamecatalog.view.LastsGameView;
 import com.tassioauad.gamecatalog.view.adapter.GameListAdapter;
 import com.tassioauad.gamecatalog.view.adapter.OnItemClickListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -41,6 +43,8 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
     RecyclerView recyclerViewGames;
 
     private final int NUMBER_OF_COLUMNS = 2;
+    private final String BUNDLE_KEY_GAMELIST = "bundl_key_gamelist";
+    private List<Game> gamesList;
 
     @Nullable
     @Override
@@ -49,9 +53,22 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
         ButterKnife.bind(this, view);
         ((GameCatalogApplication) getActivity().getApplication()).getObjectGraph().plus(new LastsGameViewModule(this)).inject(this);
 
-        presenter.init();
+        if(savedInstanceState != null && savedInstanceState.getParcelableArrayList(BUNDLE_KEY_GAMELIST) != null) {
+            gamesList = savedInstanceState.getParcelableArrayList(BUNDLE_KEY_GAMELIST);
+            showGames(gamesList);
+        } else {
+            presenter.loadLastsGames();
+        }
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if(gamesList != null) {
+            outState.putParcelableArrayList(BUNDLE_KEY_GAMELIST, new ArrayList<Game>(gamesList));
+        }
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -71,6 +88,7 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
 
     @Override
     public void showGames(List<Game> gameList) {
+        this.gamesList = gameList;
         recyclerViewGames.setAdapter(new GameListAdapter(gameList, new OnItemClickListener<Game>() {
             @Override
             public void onClick(Game game) {
