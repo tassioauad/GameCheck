@@ -15,10 +15,11 @@ import retrofit.Response;
 
 import static java.net.HttpURLConnection.HTTP_OK;
 
-public class PlatformSearchLastsAsyncTask extends GenericAsyncTask<Void, Void, List<Platform>> {
+public class PlatformSearchLastsAsyncTask extends GenericAsyncTask<Integer, Void, List<Platform>> {
 
     private PlatformResource platformResource;
-    private final int NUMBER_OF_PLATFORM = 20;
+    private final String sort = "release_date:desc";
+    private final String format = "json";
 
     public PlatformSearchLastsAsyncTask(Context context, PlatformResource platformResource) {
         super(context);
@@ -26,10 +27,10 @@ public class PlatformSearchLastsAsyncTask extends GenericAsyncTask<Void, Void, L
     }
 
     @Override
-    protected AsyncTaskResult<List<Platform>> doInBackground(Void... params) {
+    protected AsyncTaskResult<List<Platform>> doInBackground(Integer... params) {
 
         try {
-            Response<List<Platform>> response = platformResource.searchLasts(getApiKey(), NUMBER_OF_PLATFORM).execute();
+            Response<List<Platform>> response = platformResource.searchLasts(getApiKey(), params[0], sort, format).execute();
             switch (response.code()) {
                 case HTTP_OK:
                     return new AsyncTaskResult<>(response.body());

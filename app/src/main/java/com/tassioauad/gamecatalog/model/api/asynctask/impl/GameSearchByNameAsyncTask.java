@@ -18,7 +18,8 @@ import static java.net.HttpURLConnection.HTTP_OK;
 public class GameSearchByNameAsyncTask extends GenericAsyncTask<String, Void, List<Game>> {
 
     private GameResource gameResource;
-
+    private final String sort = "original_release_date:desc";
+    private final String format = "json";
 
     public GameSearchByNameAsyncTask(Context context, GameResource gameResource) {
         super(context);
@@ -29,7 +30,7 @@ public class GameSearchByNameAsyncTask extends GenericAsyncTask<String, Void, Li
     protected AsyncTaskResult<List<Game>> doInBackground(String... params) {
 
         try {
-            Response<List<Game>> response = gameResource.searchByName(getApiKey(), params[0]).execute();
+            Response<List<Game>> response = gameResource.searchByName(getApiKey(), params[0], sort, format).execute();
             switch (response.code()) {
                 case HTTP_OK:
                     return new AsyncTaskResult<>(response.body());

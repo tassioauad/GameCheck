@@ -6,14 +6,16 @@ import java.util.List;
 
 import retrofit.Call;
 import retrofit.http.GET;
-import retrofit.http.Path;
+import retrofit.http.Query;
 
 public interface PlatformResource {
 
-    @GET("/platforms/?api_key={apikey}&format=json&limit={count}&sort=release_date:desc")
-    Call<List<Platform>> searchLasts(@Path("apikey") String apiKey, @Path("count") Integer count);
+    @GET("/api/platforms/")
+    Call<List<Platform>> searchLasts(@Query("api_key") String apiKey, @Query("limit") Integer count,
+                                     @Query("sort") String sort, @Query("format") String format);
 
-    @GET("/platforms/?api_key={apikey}&format=json&sort=release_date:desc&name={name}")
-    Call<List<Platform>> searchByName(@Path("apikey") String apiKey,@Path("name") String name);
+    @GET("/api/platforms/")
+    Call<List<Platform>> searchByName(@Query("api_key") String apiKey, @Query("name") String name,
+                                      @Query("sort") String sort, @Query("format") String format);
 
 }

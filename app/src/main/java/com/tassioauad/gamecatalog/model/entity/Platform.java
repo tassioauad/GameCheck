@@ -1,10 +1,13 @@
 package com.tassioauad.gamecatalog.model.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class Platform {
+public class Platform implements Parcelable {
 
     private Long id;
 
@@ -86,4 +89,46 @@ public class Platform {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.aliases);
+        dest.writeString(this.abbreviation);
+        dest.writeParcelable(this.company, 0);
+        dest.writeString(this.deck);
+        dest.writeParcelable(this.image, 0);
+        dest.writeLong(releaseDate != null ? releaseDate.getTime() : -1);
+    }
+
+    public Platform() {
+    }
+
+    protected Platform(Parcel in) {
+        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.name = in.readString();
+        this.aliases = in.readString();
+        this.abbreviation = in.readString();
+        this.company = in.readParcelable(Company.class.getClassLoader());
+        this.deck = in.readString();
+        this.image = in.readParcelable(Image.class.getClassLoader());
+        long tmpReleaseDate = in.readLong();
+        this.releaseDate = tmpReleaseDate == -1 ? null : new Date(tmpReleaseDate);
+    }
+
+    public static final Parcelable.Creator<Platform> CREATOR = new Parcelable.Creator<Platform>() {
+        public Platform createFromParcel(Parcel source) {
+            return new Platform(source);
+        }
+
+        public Platform[] newArray(int size) {
+            return new Platform[size];
+        }
+    };
 }

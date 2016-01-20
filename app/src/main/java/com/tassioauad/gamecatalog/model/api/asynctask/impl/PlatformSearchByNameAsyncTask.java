@@ -18,7 +18,8 @@ import static java.net.HttpURLConnection.HTTP_OK;
 public class PlatformSearchByNameAsyncTask extends GenericAsyncTask<String, Void, List<Platform>> {
 
     private PlatformResource platformResource;
-
+    private final String sort = "original_release_date:desc";
+    private final String format = "json";
 
     public PlatformSearchByNameAsyncTask(Context context, PlatformResource platformResource) {
         super(context);
@@ -29,7 +30,7 @@ public class PlatformSearchByNameAsyncTask extends GenericAsyncTask<String, Void
     protected AsyncTaskResult<List<Platform>> doInBackground(String... params) {
 
         try {
-            Response<List<Platform>> response = platformResource.searchByName(getApiKey(), params[0]).execute();
+            Response<List<Platform>> response = platformResource.searchByName(getApiKey(), params[0], sort, format).execute();
             switch (response.code()) {
                 case HTTP_OK:
                     return new AsyncTaskResult<>(response.body());

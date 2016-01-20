@@ -15,6 +15,7 @@ import com.tassioauad.gamecatalog.model.entity.Platform;
 import junit.framework.TestCase;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -44,20 +45,24 @@ public class PlatformSearchByNameAsyncTaskTest extends AndroidTestCase {
         PlatformSearchByNameAsyncTask platformSearchByNameAsyncTask =
                 new PlatformSearchByNameAsyncTask(getContext(), platformResource);
 
+        final CountDownLatch signal = new CountDownLatch(1);
         platformSearchByNameAsyncTask.setApiResultListener(new ApiResultListener() {
             @Override
             public void onResult(Object object) {
                 List<Platform> platformList = (List<Platform>) object;
                 assertTrue(platformList.size() > 0);
+                signal.countDown();
             }
 
             @Override
             public void onException(Exception exception) {
                 fail(exception.getMessage());
+                signal.countDown();
             }
         });
 
-        platformSearchByNameAsyncTask.execute("play");
+        platformSearchByNameAsyncTask.execute("Commodore");
+        signal.await();
 
     }
 }

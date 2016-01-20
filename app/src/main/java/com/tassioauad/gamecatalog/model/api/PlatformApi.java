@@ -1,6 +1,6 @@
 package com.tassioauad.gamecatalog.model.api;
 
-public interface PlatformApi {
+public interface PlatformApi extends AsyncService {
 
     void searchLasts(Integer count);
 
