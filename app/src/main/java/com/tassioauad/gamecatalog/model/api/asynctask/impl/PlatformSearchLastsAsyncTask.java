@@ -18,7 +18,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 public class PlatformSearchLastsAsyncTask extends GenericAsyncTask<Integer, Void, List<Platform>> {
 
     private PlatformResource platformResource;
-    private final String sort = "original_release_date:desc";
+    private final String sort = "release_date:desc";
     private final String format = "json";
 
     public PlatformSearchLastsAsyncTask(Context context, PlatformResource platformResource) {

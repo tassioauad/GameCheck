@@ -12,7 +12,7 @@ public class LastsPlatformPresenter {
 
     private LastsPlatformView view;
     private PlatformApi platformApi;
-    private final int NUMBER_OF_PLATFORM = 20;
+    private final int NUMBER_OF_PLATFORMS = 20;
 
     public LastsPlatformPresenter(LastsPlatformView view, PlatformApi platformApi) {
         this.view = view;
@@ -39,6 +39,6 @@ public class LastsPlatformPresenter {
             }
         });
 
-        platformApi.searchLasts(NUMBER_OF_PLATFORM);
+        platformApi.searchLasts(NUMBER_OF_PLATFORMS);
     }
 }

@@ -11,7 +11,7 @@ import retrofit.http.Query;
 public interface PlatformResource {
 
     @GET("/api/platforms/")
-    Call<List<Platform>> searchLasts(@Query("api_key") String apiKey, @Query("count") Integer count,
+    Call<List<Platform>> searchLasts(@Query("api_key") String apiKey, @Query("limit") Integer count,
                                      @Query("sort") String sort, @Query("format") String format);
 
     @GET("/api/platforms/")

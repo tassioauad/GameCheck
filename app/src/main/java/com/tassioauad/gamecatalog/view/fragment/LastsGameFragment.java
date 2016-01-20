@@ -43,7 +43,7 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
     RecyclerView recyclerViewGames;
 
     private final int NUMBER_OF_COLUMNS = 2;
-    private final String BUNDLE_KEY_GAMELIST = "bundl_key_gamelist";
+    private final String BUNDLE_KEY_GAMELIST = "bundle_key_gamelist";
     private List<Game> gamesList;
 
     @Nullable
@@ -95,9 +95,7 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
                 Log.i("GAME", game.getName());
             }
         }));
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(NUMBER_OF_COLUMNS, StaggeredGridLayoutManager.VERTICAL);
-        staggeredGridLayoutManager.scrollToPosition(0);
-        recyclerViewGames.setLayoutManager(staggeredGridLayoutManager);
+        recyclerViewGames.setLayoutManager(new StaggeredGridLayoutManager(NUMBER_OF_COLUMNS, StaggeredGridLayoutManager.VERTICAL));
         recyclerViewGames.setItemAnimator(new DefaultItemAnimator());
 
     }
