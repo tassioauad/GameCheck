@@ -4,10 +4,13 @@
     <string name="app_name">Game Catalog</string>
     <string name="giantbombapi_key">04a470fa85f8af6e196aa5fc1364e15d69442cf9</string>
     <string name="giantbombapi_baseurl">http://www.giantbomb.com/api/</string>
+    <string name="date_format">MM/dd/yyyy</string>
 
     <!-- LastsGamesFragment -->
     <string name="fragment_lastsgame_title">Lasts Games</string>
 
     <!-- LastsPlatformFragment -->
     <string name="fragment_lastsplatform_title">Lasts Platforms</string>
+    <string name="gameactivity_realeasedate">Release Date : %s</string>
+    <string name="gameactivity_wheretoplay">Where to Play</string>
 </resources>

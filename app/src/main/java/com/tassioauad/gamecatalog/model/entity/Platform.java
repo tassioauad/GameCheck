@@ -122,7 +122,7 @@ public class Platform implements Parcelable {
         this.releaseDate = tmpReleaseDate == -1 ? null : new Date(tmpReleaseDate);
     }
 
-    public static final Parcelable.Creator<Platform> CREATOR = new Parcelable.Creator<Platform>() {
+    public static final Creator<Platform> CREATOR = new Creator<Platform>() {
         public Platform createFromParcel(Parcel source) {
             return new Platform(source);
         }
