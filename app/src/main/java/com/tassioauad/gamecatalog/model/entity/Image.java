@@ -1,8 +1,11 @@
 package com.tassioauad.gamecatalog.model.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Image {
+public class Image implements Parcelable {
 
     @SerializedName("icon_url")
     private String iconUrl;
@@ -80,4 +83,44 @@ public class Image {
     public void setTinyUrl(String tinyUrl) {
         this.tinyUrl = tinyUrl;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.iconUrl);
+        dest.writeString(this.mediumUrl);
+        dest.writeString(this.screenUrl);
+        dest.writeString(this.smallUrl);
+        dest.writeString(this.superUrl);
+        dest.writeString(this.thumbUrl);
+        dest.writeString(this.tinyUrl);
+    }
+
+    public Image() {
+    }
+
+    protected Image(Parcel in) {
+        this.iconUrl = in.readString();
+        this.mediumUrl = in.readString();
+        this.screenUrl = in.readString();
+        this.smallUrl = in.readString();
+        this.superUrl = in.readString();
+        this.thumbUrl = in.readString();
+        this.tinyUrl = in.readString();
+    }
+
+    public static final Parcelable.Creator<Image> CREATOR = new Parcelable.Creator<Image>() {
+        public Image createFromParcel(Parcel source) {
+            return new Image(source);
+        }
+
+        public Image[] newArray(int size) {
+            return new Image[size];
+        }
+    };
 }
