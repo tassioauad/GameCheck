@@ -21,7 +21,7 @@
         android:background="@color/black_alpha"
         android:orientation="vertical"
         android:elevation="20dp"
-        android:padding="5dp">
+        android:paddingBottom="10dp">
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -56,17 +56,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/linearlayout_header"
-        android:background="@color/black_alpha"
         android:gravity="center"
         android:elevation="20dp"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="sans-serif-light"
+            android:layout_marginBottom="3dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:background="@color/black_alpha"
+            android:fontFamily="sans-serif-medium"
             android:text="@string/gameactivity_wheretoplay"
             android:textSize="@dimen/bigtext" />
 
@@ -74,6 +75,7 @@
             android:id="@+id/recyclerview_platforms"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/black_alpha"
             android:visibility="visible">
 
         </android.support.v7.widget.RecyclerView>

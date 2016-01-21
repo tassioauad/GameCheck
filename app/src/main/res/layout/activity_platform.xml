@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageview_cover"
         android:layout_marginBottom="5dp"
-        android:background="@color/dark_blue"
+        android:background="@color/black"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/linearlayout_header"
-        android:background="@color/dark_blue"
+        android:background="@color/black"
         android:gravity="center"
         android:orientation="vertical">
 
