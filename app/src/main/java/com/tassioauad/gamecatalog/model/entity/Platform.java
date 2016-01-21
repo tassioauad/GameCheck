@@ -26,6 +26,18 @@ public class Platform implements Parcelable {
     @SerializedName("release_date")
     private Date releaseDate;
 
+    public Platform(Long id, String name, String aliases, String abbreviation, Company company,
+                    String deck, Image image, Date releaseDate) {
+        this.id = id;
+        this.name = name;
+        this.aliases = aliases;
+        this.abbreviation = abbreviation;
+        this.company = company;
+        this.deck = deck;
+        this.image = image;
+        this.releaseDate = releaseDate;
+    }
+
     public Long getId() {
         return id;
     }
@@ -122,7 +134,7 @@ public class Platform implements Parcelable {
         this.releaseDate = tmpReleaseDate == -1 ? null : new Date(tmpReleaseDate);
     }
 
-    public static final Parcelable.Creator<Platform> CREATOR = new Parcelable.Creator<Platform>() {
+    public static final Creator<Platform> CREATOR = new Creator<Platform>() {
         public Platform createFromParcel(Parcel source) {
             return new Platform(source);
         }

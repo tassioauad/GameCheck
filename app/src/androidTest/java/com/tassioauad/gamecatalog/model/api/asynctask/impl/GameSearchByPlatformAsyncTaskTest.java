@@ -5,6 +5,7 @@ import android.test.AndroidTestCase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tassioauad.gamecatalog.R;
+import com.tassioauad.gamecatalog.entity.PlatformBuilder;
 import com.tassioauad.gamecatalog.model.api.ItemTypeAdapterFactory;
 import com.tassioauad.gamecatalog.model.api.asynctask.ApiResultListener;
 import com.tassioauad.gamecatalog.model.api.resource.GameResource;
@@ -43,8 +44,7 @@ public class GameSearchByPlatformAsyncTaskTest extends AndroidTestCase {
 
         GameSearchByPlatformAsyncTask gameSearchByPlatformAsyncTask =
                 new GameSearchByPlatformAsyncTask(getContext(), gameResource);
-        Platform platform = new Platform();
-        platform.setId(94l);
+
 
         gameSearchByPlatformAsyncTask.setApiResultListener(new ApiResultListener() {
             @Override
@@ -61,7 +61,7 @@ public class GameSearchByPlatformAsyncTaskTest extends AndroidTestCase {
             }
         });
 
-        gameSearchByPlatformAsyncTask.execute(platform);
+        gameSearchByPlatformAsyncTask.execute(PlatformBuilder.aPlatform().build());
         signal.await();
 
     }

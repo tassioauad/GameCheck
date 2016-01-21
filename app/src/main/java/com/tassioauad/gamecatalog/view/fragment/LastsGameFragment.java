@@ -21,6 +21,7 @@ import com.tassioauad.gamecatalog.dagger.LastsGameViewModule;
 import com.tassioauad.gamecatalog.model.entity.Game;
 import com.tassioauad.gamecatalog.presenter.LastsGamePresenter;
 import com.tassioauad.gamecatalog.view.LastsGameView;
+import com.tassioauad.gamecatalog.view.activity.GameActivity;
 import com.tassioauad.gamecatalog.view.adapter.GameListAdapter;
 import com.tassioauad.gamecatalog.view.adapter.OnItemClickListener;
 
@@ -92,7 +93,7 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
         recyclerViewGames.setAdapter(new GameListAdapter(gameList, new OnItemClickListener<Game>() {
             @Override
             public void onClick(Game game) {
-                Log.i("GAME", game.getName());
+                startActivity(GameActivity.newInstance(getActivity(), game));
             }
         }));
         recyclerViewGames.setLayoutManager(new StaggeredGridLayoutManager(NUMBER_OF_COLUMNS, StaggeredGridLayoutManager.VERTICAL));

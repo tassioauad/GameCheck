@@ -36,6 +36,21 @@ public class Game implements Parcelable {
     @SerializedName("expected_release_year")
     private Integer expectedReleaseYear;
 
+    public Game(Integer id, String name, String aliases, Image image, String deck,
+                Date originalReleaseDate, List<Platform> platforms, Integer expectedReleaseDay,
+                Integer expectedReleaseMonth, Integer expectedReleaseYear) {
+        this.id = id;
+        this.name = name;
+        this.aliases = aliases;
+        this.image = image;
+        this.deck = deck;
+        this.originalReleaseDate = originalReleaseDate;
+        this.platforms = platforms;
+        this.expectedReleaseDay = expectedReleaseDay;
+        this.expectedReleaseMonth = expectedReleaseMonth;
+        this.expectedReleaseYear = expectedReleaseYear;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -102,7 +117,6 @@ public class Game implements Parcelable {
         this.platforms = platforms;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -113,10 +127,10 @@ public class Game implements Parcelable {
         dest.writeValue(this.id);
         dest.writeString(this.name);
         dest.writeString(this.aliases);
-        dest.writeParcelable(this.image, flags);
+        dest.writeParcelable(this.image, 0);
         dest.writeString(this.deck);
         dest.writeLong(originalReleaseDate != null ? originalReleaseDate.getTime() : -1);
-        dest.writeList(this.platforms);
+        dest.writeTypedList(platforms);
         dest.writeValue(this.expectedReleaseDay);
         dest.writeValue(this.expectedReleaseMonth);
         dest.writeValue(this.expectedReleaseYear);
@@ -133,14 +147,13 @@ public class Game implements Parcelable {
         this.deck = in.readString();
         long tmpOriginalReleaseDate = in.readLong();
         this.originalReleaseDate = tmpOriginalReleaseDate == -1 ? null : new Date(tmpOriginalReleaseDate);
-        this.platforms = new ArrayList<Platform>();
-        in.readList(this.platforms, List.class.getClassLoader());
+        this.platforms = in.createTypedArrayList(Platform.CREATOR);
         this.expectedReleaseDay = (Integer) in.readValue(Integer.class.getClassLoader());
         this.expectedReleaseMonth = (Integer) in.readValue(Integer.class.getClassLoader());
         this.expectedReleaseYear = (Integer) in.readValue(Integer.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<Game> CREATOR = new Parcelable.Creator<Game>() {
+    public static final Creator<Game> CREATOR = new Creator<Game>() {
         public Game createFromParcel(Parcel source) {
             return new Game(source);
         }

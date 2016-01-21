@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_alpha"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageview_cover"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/nophoto" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/imageview_cover"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:id="@+id/linearlayout_header"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.5"
+            android:background="@color/black_alpha"
+            android:elevation="20dp"
+            android:orientation="vertical"
+            android:paddingTop="60dp">
+
+            <TextView
+                android:id="@+id/textview_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Thomb Raider"
+                android:textSize="@dimen/xbigtext"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_realeasedate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/gameactivity_realeasedate"
+                android:textSize="@dimen/smalltext"
+                android:textStyle="bold" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:elevation="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:gravity="center"
+                android:background="@color/black_alpha"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/gameactivity_wheretoplay"
+                android:textSize="@dimen/bigtext" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_platforms"
+                android:layout_width="match_parent"
+                android:background="@color/black_alpha"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/imageview_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/imageview_cover"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="-40dp"
+        android:elevation="70dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent" />
+
+</RelativeLayout>
