@@ -5,6 +5,7 @@ import android.test.AndroidTestCase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tassioauad.gamecatalog.R;
+import com.tassioauad.gamecatalog.entity.GameBuilder;
 import com.tassioauad.gamecatalog.model.api.ItemTypeAdapterFactory;
 import com.tassioauad.gamecatalog.model.api.asynctask.ApiResultListener;
 import com.tassioauad.gamecatalog.model.api.resource.GameResource;
@@ -60,7 +61,7 @@ public class GameSearchByNameAsyncTaskTest extends AndroidTestCase {
             }
         });
 
-        gameSearchByNameAsyncTask.execute("raider");
+        gameSearchByNameAsyncTask.execute(GameBuilder.aGame().build().getName());
         signal.await();
 
     }

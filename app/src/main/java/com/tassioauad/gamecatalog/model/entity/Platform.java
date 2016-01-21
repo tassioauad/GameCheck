@@ -26,6 +26,18 @@ public class Platform implements Parcelable {
     @SerializedName("release_date")
     private Date releaseDate;
 
+    public Platform(Long id, String name, String aliases, String abbreviation, Company company,
+                    String deck, Image image, Date releaseDate) {
+        this.id = id;
+        this.name = name;
+        this.aliases = aliases;
+        this.abbreviation = abbreviation;
+        this.company = company;
+        this.deck = deck;
+        this.image = image;
+        this.releaseDate = releaseDate;
+    }
+
     public Long getId() {
         return id;
     }

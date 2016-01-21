@@ -36,6 +36,21 @@ public class Game implements Parcelable {
     @SerializedName("expected_release_year")
     private Integer expectedReleaseYear;
 
+    public Game(Integer id, String name, String aliases, Image image, String deck,
+                Date originalReleaseDate, List<Platform> platforms, Integer expectedReleaseDay,
+                Integer expectedReleaseMonth, Integer expectedReleaseYear) {
+        this.id = id;
+        this.name = name;
+        this.aliases = aliases;
+        this.image = image;
+        this.deck = deck;
+        this.originalReleaseDate = originalReleaseDate;
+        this.platforms = platforms;
+        this.expectedReleaseDay = expectedReleaseDay;
+        this.expectedReleaseMonth = expectedReleaseMonth;
+        this.expectedReleaseYear = expectedReleaseYear;
+    }
+
     public Integer getId() {
         return id;
     }
