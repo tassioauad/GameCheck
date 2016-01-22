@@ -14,7 +14,11 @@ public class GamePresenter {
 
     public void init(Game game) {
         this.game = game;
-        view.showPlataforms(game.getPlatforms());
+        if(game.getPlatforms() != null && game.getPlatforms().size() > 0) {
+            view.showPlataforms(game.getPlatforms());
+        } else {
+            view.warnNoPlatform();
+        }
         view.showGame(game);
 
     }

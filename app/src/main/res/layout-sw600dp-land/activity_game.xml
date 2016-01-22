@@ -19,9 +19,9 @@
         android:layout_below="@id/imageview_cover"
         android:layout_marginBottom="5dp"
         android:background="@color/black_alpha"
-        android:orientation="vertical"
         android:elevation="20dp"
-        android:paddingBottom="10dp">
+        android:orientation="vertical"
+        android:paddingBottom="40dp">
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -29,26 +29,59 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right" />
 
-        <TextView
-            android:id="@+id/textview_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Thomb Raider"
-            android:textSize="@dimen/xbigtext"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-        <TextView
-            android:id="@+id/textview_realeasedate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/gameactivity_realeasedate"
-            android:textSize="@dimen/smalltext"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textview_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Thomb Raider"
+                    android:textSize="@dimen/xbigtext"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textview_realeasedate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/gameactivity_realeasedate"
+                    android:textSize="@dimen/smalltext"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_weight="0.6"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textview_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:lines="4"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/smalltext"/>
+
+            </ScrollView>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -56,18 +89,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/linearlayout_header"
-        android:gravity="center"
         android:elevation="20dp"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
-            android:gravity="center"
-            android:padding="5dp"
             android:background="@color/black_alpha"
             android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:padding="5dp"
             android:text="@string/gameactivity_wheretoplay"
             android:textSize="@dimen/bigtext" />
 
@@ -80,6 +113,18 @@
 
         </android.support.v7.widget.RecyclerView>
 
+        <TextView
+            android:id="@+id/textview_noplatform"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_alpha"
+            android:gravity="center"
+            android:textSize="@dimen/bigtext"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="italic"
+            android:text="@string/gameactivity_anyplatform"
+            android:visibility="gone"/>
+
     </LinearLayout>
 
     <ImageView
@@ -88,10 +133,10 @@
         android:layout_height="100dp"
         android:layout_below="@id/imageview_cover"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="-40dp"
         android:elevation="70dp"
         android:scaleType="centerCrop"
-        android:layout_marginTop="-40dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/nophoto" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

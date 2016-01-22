@@ -10,4 +10,6 @@ public interface GameView {
     void showPlataforms(List<Platform> platforms);
 
     void showGame(Game game);
+
+    void warnNoPlatform();
 }

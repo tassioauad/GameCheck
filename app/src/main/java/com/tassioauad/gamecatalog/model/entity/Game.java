@@ -16,6 +16,8 @@ public class Game implements Parcelable {
 
     private String name;
 
+    private String description;
+
     private String aliases;
 
     private Image image;
@@ -38,7 +40,7 @@ public class Game implements Parcelable {
 
     public Game(Integer id, String name, String aliases, Image image, String deck,
                 Date originalReleaseDate, List<Platform> platforms, Integer expectedReleaseDay,
-                Integer expectedReleaseMonth, Integer expectedReleaseYear) {
+                Integer expectedReleaseMonth, Integer expectedReleaseYear, String description) {
         this.id = id;
         this.name = name;
         this.aliases = aliases;
@@ -49,6 +51,7 @@ public class Game implements Parcelable {
         this.expectedReleaseDay = expectedReleaseDay;
         this.expectedReleaseMonth = expectedReleaseMonth;
         this.expectedReleaseYear = expectedReleaseYear;
+        this.description = description;
     }
 
     public Integer getId() {
@@ -117,6 +120,14 @@ public class Game implements Parcelable {
         this.platforms = platforms;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -126,6 +137,7 @@ public class Game implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(this.id);
         dest.writeString(this.name);
+        dest.writeString(this.description);
         dest.writeString(this.aliases);
         dest.writeParcelable(this.image, 0);
         dest.writeString(this.deck);
@@ -136,12 +148,10 @@ public class Game implements Parcelable {
         dest.writeValue(this.expectedReleaseYear);
     }
 
-    public Game() {
-    }
-
     protected Game(Parcel in) {
         this.id = (Integer) in.readValue(Integer.class.getClassLoader());
         this.name = in.readString();
+        this.description = in.readString();
         this.aliases = in.readString();
         this.image = in.readParcelable(Image.class.getClassLoader());
         this.deck = in.readString();

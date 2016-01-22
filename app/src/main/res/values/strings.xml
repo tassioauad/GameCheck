@@ -13,4 +13,5 @@
     <string name="fragment_lastsplatform_title">Lasts Platforms</string>
     <string name="gameactivity_realeasedate">Release Date : %s</string>
     <string name="gameactivity_wheretoplay">Where to Play</string>
+    <string name="gameactivity_anyplatform">OPS! Any Platform :`(</string>
 </resources>

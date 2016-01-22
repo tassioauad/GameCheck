@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -49,6 +50,10 @@ public class GameActivity extends AppCompatActivity implements GameView {
     ImageView imageViewCover;
     @Bind(R.id.imageview_photo)
     ImageView imageViewPhoto;
+    @Bind(R.id.textview_description)
+    TextView textViewDescription;
+    @Bind(R.id.textview_noplatform)
+    TextView textViewNoPlatform;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
@@ -111,5 +116,16 @@ public class GameActivity extends AppCompatActivity implements GameView {
             Picasso.with(this).load(game.getImage().getMediumUrl()).placeholder(R.drawable.nophoto).into(imageViewPhoto);
             Picasso.with(this).load(game.getImage().getSuperUrl()).placeholder(R.drawable.nophoto).into(imageViewCover);
         }
+        if(game.getDescription() != null) {
+            textViewDescription.setText(Html.fromHtml(game.getDescription().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
+        } else {
+            textViewDescription.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void warnNoPlatform() {
+        recyclerView.setVisibility(View.GONE);
+        textViewNoPlatform.setVisibility(View.VISIBLE);
     }
 }
