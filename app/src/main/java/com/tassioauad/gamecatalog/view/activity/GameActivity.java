@@ -95,7 +95,7 @@ public class GameActivity extends AppCompatActivity implements GameView {
         recyclerView.setAdapter(new PlatformListAdapter(platformList, new OnItemClickListener<Platform>() {
             @Override
             public void onClick(Platform platform) {
-
+                startActivity(PlatformActivity.newInstance(GameActivity.this, platform));
             }
         }));
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL));

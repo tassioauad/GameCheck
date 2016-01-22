@@ -26,8 +26,10 @@ public class Platform implements Parcelable {
     @SerializedName("release_date")
     private Date releaseDate;
 
+    private String description;
+
     public Platform(Long id, String name, String aliases, String abbreviation, Company company,
-                    String deck, Image image, Date releaseDate) {
+                    String deck, Image image, Date releaseDate, String description) {
         this.id = id;
         this.name = name;
         this.aliases = aliases;
@@ -36,6 +38,7 @@ public class Platform implements Parcelable {
         this.deck = deck;
         this.image = image;
         this.releaseDate = releaseDate;
+        this.description = description;
     }
 
     public Long getId() {
@@ -102,6 +105,14 @@ public class Platform implements Parcelable {
         this.releaseDate = releaseDate;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -117,9 +128,7 @@ public class Platform implements Parcelable {
         dest.writeString(this.deck);
         dest.writeParcelable(this.image, 0);
         dest.writeLong(releaseDate != null ? releaseDate.getTime() : -1);
-    }
-
-    public Platform() {
+        dest.writeString(this.description);
     }
 
     protected Platform(Parcel in) {
@@ -132,6 +141,7 @@ public class Platform implements Parcelable {
         this.image = in.readParcelable(Image.class.getClassLoader());
         long tmpReleaseDate = in.readLong();
         this.releaseDate = tmpReleaseDate == -1 ? null : new Date(tmpReleaseDate);
+        this.description = in.readString();
     }
 
     public static final Creator<Platform> CREATOR = new Creator<Platform>() {

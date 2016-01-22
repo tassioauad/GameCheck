@@ -21,7 +21,7 @@
         android:background="@color/black_alpha"
         android:elevation="20dp"
         android:orientation="vertical"
-        android:paddingBottom="10dp">
+        android:paddingBottom="40dp">
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -29,43 +29,59 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right" />
 
-        <TextView
-            android:id="@+id/textview_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-black"
-            android:text="Thomb Raider"
-            android:textSize="@dimen/xbigtext"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textview_realeasedate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/gameactivity_realeasedate"
-            android:textSize="@dimen/smalltext"
-            android:textStyle="bold" />
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <TextView
-                android:id="@+id/textview_description"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="sans-serif-light"
-                android:lines="5"
-                android:textSize="@dimen/smalltext" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
 
-        </ScrollView>
+                <TextView
+                    android:id="@+id/textview_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-black"
+                    android:text="Thomb Raider"
+                    android:textSize="@dimen/xbigtext"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textview_realeasedate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/gameactivity_realeasedate"
+                    android:textSize="@dimen/smalltext"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_weight="0.6"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textview_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:lines="4"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/smalltext"/>
+
+            </ScrollView>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -102,12 +118,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black_alpha"
-            android:fontFamily="sans-serif-light"
             android:gravity="center"
-            android:text="@string/platformactivity_anygame"
             android:textSize="@dimen/bigtext"
+            android:fontFamily="sans-serif-light"
             android:textStyle="italic"
-            android:visibility="gone" />
+            android:text="@string/platformactivity_anygame"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/linearlayout_loading"

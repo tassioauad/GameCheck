@@ -20,6 +20,7 @@ import com.tassioauad.gamecatalog.dagger.LastsPlatformViewModule;
 import com.tassioauad.gamecatalog.model.entity.Platform;
 import com.tassioauad.gamecatalog.presenter.LastsPlatformPresenter;
 import com.tassioauad.gamecatalog.view.LastsPlatformView;
+import com.tassioauad.gamecatalog.view.activity.PlatformActivity;
 import com.tassioauad.gamecatalog.view.adapter.OnItemClickListener;
 import com.tassioauad.gamecatalog.view.adapter.PlatformListAdapter;
 
@@ -82,7 +83,7 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
         recyclerViewPlatforms.setAdapter(new PlatformListAdapter(platformList, new OnItemClickListener<Platform>() {
             @Override
             public void onClick(Platform platform) {
-                Log.i("PLATFORM", platform.getName());
+                startActivity(PlatformActivity.newInstance(getActivity(), platform));
             }
         }));
         recyclerViewPlatforms.setItemAnimator(new DefaultItemAnimator());

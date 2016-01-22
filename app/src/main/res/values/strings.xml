@@ -11,7 +11,15 @@
 
     <!-- LastsPlatformFragment -->
     <string name="fragment_lastsplatform_title">Lasts Platforms</string>
+
+    <!--GameActivity-->
     <string name="gameactivity_realeasedate">Release Date : %s</string>
     <string name="gameactivity_wheretoplay">Where to Play</string>
     <string name="gameactivity_anyplatform">OPS! Any Platform :`(</string>
+
+    <!--PlatformActivity-->
+    <string name="platformactivity_realeasedate">Release Date : %s</string>
+    <string name="platformactivity_wheretoplay">What to Play</string>
+    <string name="platformactivity_anygame">OPS! Any Game :`(</string>
+    <string name="platformactivity_failuretolistgames">OPS! Failure to list games!</string>
 </resources>
