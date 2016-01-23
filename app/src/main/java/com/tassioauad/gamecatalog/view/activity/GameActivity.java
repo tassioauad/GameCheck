@@ -116,7 +116,7 @@ public class GameActivity extends AppCompatActivity implements GameView {
             Picasso.with(this).load(game.getImage().getMediumUrl()).placeholder(R.drawable.nophoto).into(imageViewPhoto);
             Picasso.with(this).load(game.getImage().getSuperUrl()).placeholder(R.drawable.nophoto).into(imageViewCover);
         }
-        if(game.getDescription() != null) {
+        if(game.getDescription() != null && !game.getDescription().equals("<p style=\"\"> </p>")) {
             textViewDescription.setText(Html.fromHtml(game.getDescription().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
         } else {
             textViewDescription.setVisibility(View.GONE);
