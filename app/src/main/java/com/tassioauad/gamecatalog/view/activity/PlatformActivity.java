@@ -107,7 +107,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
                 startActivity(GameActivity.newInstance(PlatformActivity.this, game));
             }
         }));
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 

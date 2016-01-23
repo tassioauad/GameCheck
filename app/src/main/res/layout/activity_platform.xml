@@ -47,7 +47,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/gameactivity_realeasedate"
+            android:text="@string/platformactivity_realeasedate"
             android:textSize="@dimen/smalltext"
             android:textStyle="bold" />
 
@@ -85,7 +85,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:padding="5dp"
-            android:text="@string/gameactivity_wheretoplay"
+            android:text="@string/platformactivity_whattoplay"
             android:textSize="@dimen/bigtext" />
 
         <android.support.v7.widget.RecyclerView

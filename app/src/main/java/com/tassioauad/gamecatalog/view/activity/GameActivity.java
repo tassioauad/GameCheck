@@ -98,7 +98,7 @@ public class GameActivity extends AppCompatActivity implements GameView {
                 startActivity(PlatformActivity.newInstance(GameActivity.this, platform));
             }
         }));
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 

@@ -19,7 +19,7 @@
 
     <!--PlatformActivity-->
     <string name="platformactivity_realeasedate">Release Date : %s</string>
-    <string name="platformactivity_wheretoplay">What to Play</string>
+    <string name="platformactivity_whattoplay">What to Play</string>
     <string name="platformactivity_anygame">OPS! Any Game :`(</string>
     <string name="platformactivity_failuretolistgames">OPS! Failure to list games!</string>
 </resources>
