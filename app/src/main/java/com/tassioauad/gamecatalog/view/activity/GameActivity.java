@@ -12,6 +12,7 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -56,6 +57,8 @@ public class GameActivity extends AppCompatActivity implements GameView {
     TextView textViewNoPlatform;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.scrollview_description)
+    ScrollView scrollViewDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +122,7 @@ public class GameActivity extends AppCompatActivity implements GameView {
         if(game.getDescription() != null && !game.getDescription().equals("<p style=\"\"> </p>")) {
             textViewDescription.setText(Html.fromHtml(game.getDescription().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
         } else {
-            textViewDescription.setVisibility(View.GONE);
+            scrollViewDescription.setVisibility(View.GONE);
         }
     }
 

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,8 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
     LinearLayout linearLayoutLoading;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.scrollview_description)
+    ScrollView scrollViewDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +130,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
         if(platform.getDescription() != null && !platform.getDescription().equals("<p style=\"\"> </p>")) {
             textViewDescription.setText(Html.fromHtml(platform.getDescription().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
         } else {
-            textViewDescription.setVisibility(View.GONE);
+            scrollViewDescription.setVisibility(View.GONE);
         }
     }
 
