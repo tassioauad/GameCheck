@@ -2,6 +2,7 @@ package com.tassioauad.gamecatalog.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -101,7 +102,11 @@ public class GameActivity extends AppCompatActivity implements GameView {
                 startActivity(PlatformActivity.newInstance(GameActivity.this, platform));
             }
         }));
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+        int numberOfColumns = 3;
+        if(getResources().getConfiguration().orientation  == Configuration.ORIENTATION_LANDSCAPE) {
+            numberOfColumns = 2;
+        }
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(numberOfColumns, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 

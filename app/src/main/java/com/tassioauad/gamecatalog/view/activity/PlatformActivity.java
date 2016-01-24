@@ -2,6 +2,7 @@ package com.tassioauad.gamecatalog.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -107,6 +108,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
         if(gameList != null) {
             outState.putParcelableArrayList(BUNDLE_KEY_GAMELIST, new ArrayList<Parcelable>(gameList));
         }
+
         super.onSaveInstanceState(outState);
     }
 
@@ -129,7 +131,11 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
                 startActivity(GameActivity.newInstance(PlatformActivity.this, game));
             }
         }));
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+        int numberOfColumns = 3;
+        if(getResources().getConfiguration().orientation  == Configuration.ORIENTATION_LANDSCAPE) {
+            numberOfColumns = 2;
+        }
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(numberOfColumns, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
