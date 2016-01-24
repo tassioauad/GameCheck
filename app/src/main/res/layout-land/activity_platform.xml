@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/imageview_cover"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:scaleType="centerCrop"
         android:src="@drawable/nophoto" />
 
@@ -24,18 +24,15 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.6"
             android:background="@color/black_alpha"
             android:elevation="20dp"
             android:orientation="vertical">
 
             <RatingBar
                 android:id="@+id/ratingBar"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
                 android:layout_gravity="right"
                 android:layout_width="wrap_content"
-                style="?android:attr/ratingBarStyleIndicator"
                 android:layout_height="wrap_content" />
 
             <TextView
@@ -81,7 +78,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.4"
             android:elevation="20dp"
             android:gravity="center"
             android:orientation="vertical">
