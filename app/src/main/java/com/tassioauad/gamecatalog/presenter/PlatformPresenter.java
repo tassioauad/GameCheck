@@ -22,10 +22,9 @@ public class PlatformPresenter {
     public void init(Platform platform) {
         this.platform = platform;
         view.showPlatform(platform);
-        loadGames();
     }
 
-    private void loadGames() {
+    public void loadGames() {
         view.showLoadingMessage();
         gameApi.setServiceResultListener(new ApiResultListener() {
             @Override

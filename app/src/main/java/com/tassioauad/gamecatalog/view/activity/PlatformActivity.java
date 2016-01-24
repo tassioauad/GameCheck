@@ -3,6 +3,7 @@ package com.tassioauad.gamecatalog.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +33,7 @@ import com.tassioauad.gamecatalog.view.adapter.GameListAdapter;
 import com.tassioauad.gamecatalog.view.adapter.OnItemClickListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -44,6 +46,8 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
     @Inject
     PlatformPresenter presenter;
     private static final String INTENT_KEY_PLATFORM = "intent_key_platform";
+    private static final String BUNDLE_KEY_GAMELIST = "bundle_key_gamelist";
+    private List<Game> gameList;
 
     @Bind(R.id.recyclerview_platforms)
     RecyclerView recyclerView;
@@ -79,6 +83,12 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
 
         Platform platform = getIntent().getParcelableExtra(INTENT_KEY_PLATFORM);
         presenter.init(platform);
+        if(savedInstanceState != null && savedInstanceState.getParcelableArrayList(BUNDLE_KEY_GAMELIST) != null) {
+            gameList = savedInstanceState.getParcelableArrayList(BUNDLE_KEY_GAMELIST);
+            showGames(gameList);
+        } else {
+            presenter.loadGames();
+        }
     }
 
     @Override
@@ -92,6 +102,14 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if(gameList != null) {
+            outState.putParcelableArrayList(BUNDLE_KEY_GAMELIST, new ArrayList<Parcelable>(gameList));
+        }
+        super.onSaveInstanceState(outState);
+    }
+
     public static final Intent newInstance(Context context, Platform platform) {
         Intent intent = new Intent(context, PlatformActivity.class);
         intent.putExtra(INTENT_KEY_PLATFORM, platform);
@@ -101,6 +119,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
 
     @Override
     public void showGames(List<Game> gameList) {
+        this.gameList = gameList;
         textViewNoGame.setVisibility(View.GONE);
         linearLayoutLoading.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
