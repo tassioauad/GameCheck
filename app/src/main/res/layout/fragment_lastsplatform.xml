@@ -20,4 +20,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <TextView
+        android:id="@+id/textview_noplatform"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="sans-serif-light"
+        android:textStyle="italic"
+        android:textSize="@dimen/bigtext"
+        android:gravity="center"
+        android:text="@string/lastsplatformfragment_noplatform"
+        android:visibility="gone"/>
+
 </RelativeLayout>

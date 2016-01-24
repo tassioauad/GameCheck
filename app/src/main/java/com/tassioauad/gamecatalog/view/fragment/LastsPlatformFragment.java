@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.tassioauad.gamecatalog.GameCatalogApplication;
 import com.tassioauad.gamecatalog.R;
@@ -41,6 +42,8 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
     RecyclerView recyclerViewPlatforms;
     @Bind(R.id.progressbar)
     ProgressBar progressBar;
+    @Bind(R.id.textview_noplatform)
+    TextView textViewNoPlatform;
 
     private List<Platform> platformList;
     private final String BUNDLE_KEY_PLATFORMLIST = "bundle_key_platformlist";
@@ -52,6 +55,13 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
         View view = inflater.inflate(R.layout.fragment_lastsplatform, container, false);
         ButterKnife.bind(this, view);
         ((GameCatalogApplication) getActivity().getApplication()).getObjectGraph().plus(new LastsPlatformViewModule(this)).inject(this);
+
+        textViewNoPlatform.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.loadLastsPlatforms();
+            }
+        });
 
         if(savedInstanceState != null && savedInstanceState.getParcelableArrayList(BUNDLE_KEY_PLATFORMLIST) != null) {
             platformList = savedInstanceState.getParcelableArrayList(BUNDLE_KEY_PLATFORMLIST);
@@ -79,6 +89,7 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
     @Override
     public void showPlatforms(List<Platform> platformList) {
         this.platformList = platformList;
+        textViewNoPlatform.setVisibility(View.GONE);
         recyclerViewPlatforms.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerViewPlatforms.setAdapter(new PlatformListAdapter(platformList, new OnItemClickListener<Platform>() {
             @Override
@@ -96,6 +107,7 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
 
     @Override
     public void warnCouldNotLoadPlatforms() {
-
+        recyclerViewPlatforms.setVisibility(View.GONE);
+        textViewNoPlatform.setVisibility(View.VISIBLE);
     }
 }
