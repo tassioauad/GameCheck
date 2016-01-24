@@ -35,6 +35,8 @@ public class GameBuilder {
 
     private Integer expectedReleaseYear;
 
+    private String description;
+
     public static GameBuilder aGame() {
         return new GameBuilder()
                 .withId(DEFAULT_ID)
@@ -96,8 +98,13 @@ public class GameBuilder {
         return this;
     }
 
+    public GameBuilder withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
     public Game build() {
         return new Game(id, name, aliases, image, deck, originalReleaseDate, platforms,
-                expectedReleaseDay, expectedReleaseMonth, expectedReleaseYear);
+                expectedReleaseDay, expectedReleaseMonth, expectedReleaseYear, description);
     }
 }

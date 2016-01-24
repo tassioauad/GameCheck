@@ -33,7 +33,6 @@
                 android:id="@+id/ratingBar"
                 android:layout_gravity="right"
                 android:layout_width="wrap_content"
-                android:transformPivotX="0dp"
                 android:layout_height="wrap_content" />
 
             <TextView
@@ -54,14 +53,14 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/gameactivity_realeasedate"
+                android:text="@string/platformactivity_realeasedate"
                 android:textSize="@dimen/smalltext"
                 android:textStyle="bold" />
 
             <ScrollView
                 android:id="@+id/scrollview_description"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="90dp">
 
                 <TextView
                     android:id="@+id/textview_description"
@@ -92,7 +91,7 @@
                 android:padding="5dp"
                 android:background="@color/black_alpha"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/gameactivity_wheretoplay"
+                android:text="@string/platformactivity_whattoplay"
                 android:textSize="@dimen/bigtext" />
 
             <android.support.v7.widget.RecyclerView
@@ -105,7 +104,7 @@
             </android.support.v7.widget.RecyclerView>
 
             <TextView
-                android:id="@+id/textview_noplatform"
+                android:id="@+id/textview_nogame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/black_alpha"
@@ -113,8 +112,22 @@
                 android:textSize="@dimen/bigtext"
                 android:fontFamily="sans-serif-light"
                 android:textStyle="italic"
-                android:text="@string/gameactivity_anyplatform"
+                android:text="@string/platformactivity_anygame"
                 android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/linearlayout_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_alpha"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

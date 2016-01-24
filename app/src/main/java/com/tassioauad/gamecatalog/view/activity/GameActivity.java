@@ -2,15 +2,18 @@ package com.tassioauad.gamecatalog.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -49,8 +52,14 @@ public class GameActivity extends AppCompatActivity implements GameView {
     ImageView imageViewCover;
     @Bind(R.id.imageview_photo)
     ImageView imageViewPhoto;
+    @Bind(R.id.textview_description)
+    TextView textViewDescription;
+    @Bind(R.id.textview_noplatform)
+    TextView textViewNoPlatform;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.scrollview_description)
+    ScrollView scrollViewDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,10 +99,14 @@ public class GameActivity extends AppCompatActivity implements GameView {
         recyclerView.setAdapter(new PlatformListAdapter(platformList, new OnItemClickListener<Platform>() {
             @Override
             public void onClick(Platform platform) {
-
+                startActivity(PlatformActivity.newInstance(GameActivity.this, platform));
             }
         }));
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL));
+        int numberOfColumns = 3;
+        if(getResources().getConfiguration().orientation  == Configuration.ORIENTATION_LANDSCAPE) {
+            numberOfColumns = 2;
+        }
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(numberOfColumns, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
@@ -111,5 +124,16 @@ public class GameActivity extends AppCompatActivity implements GameView {
             Picasso.with(this).load(game.getImage().getMediumUrl()).placeholder(R.drawable.nophoto).into(imageViewPhoto);
             Picasso.with(this).load(game.getImage().getSuperUrl()).placeholder(R.drawable.nophoto).into(imageViewCover);
         }
+        if(game.getDescription() != null && !game.getDescription().equals("<p style=\"\"> </p>")) {
+            textViewDescription.setText(Html.fromHtml(game.getDescription().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
+        } else {
+            scrollViewDescription.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void warnNoPlatform() {
+        recyclerView.setVisibility(View.GONE);
+        textViewNoPlatform.setVisibility(View.VISIBLE);
     }
 }

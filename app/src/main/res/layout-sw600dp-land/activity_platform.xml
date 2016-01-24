@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="sans-serif-light"
-                    android:text="@string/gameactivity_realeasedate"
+                    android:text="@string/platformactivity_realeasedate"
                     android:textSize="@dimen/smalltext"
                     android:textStyle="bold" />
 
@@ -101,7 +101,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:padding="5dp"
-            android:text="@string/gameactivity_wheretoplay"
+            android:text="@string/platformactivity_whattoplay"
             android:textSize="@dimen/bigtext" />
 
         <android.support.v7.widget.RecyclerView
@@ -114,7 +114,7 @@
         </android.support.v7.widget.RecyclerView>
 
         <TextView
-            android:id="@+id/textview_noplatform"
+            android:id="@+id/textview_nogame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black_alpha"
@@ -122,8 +122,22 @@
             android:textSize="@dimen/bigtext"
             android:fontFamily="sans-serif-light"
             android:textStyle="italic"
-            android:text="@string/gameactivity_anyplatform"
+            android:text="@string/platformactivity_anygame"
             android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_alpha"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -68,9 +68,9 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
             switch (position) {
                 default:
                 case 0:
-                    return getString(R.string.fragment_lastsgame_title);
+                    return getString(R.string.lastsgamefragment_title);
                 case 1:
-                    return getString(R.string.fragment_lastsplatform_title);
+                    return getString(R.string.lastsplatformfragment_title);
             }
         }
     }

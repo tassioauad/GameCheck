@@ -5,15 +5,11 @@
     android:background="@color/black_alpha"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/appbar" />
-
     <ImageView
         android:id="@+id/imageview_cover"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_below="@id/toolbar"
+        android:scaleType="centerCrop"
         android:src="@drawable/nophoto" />
 
     <LinearLayout
@@ -22,9 +18,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageview_cover"
         android:layout_marginBottom="5dp"
-        android:background="@color/black"
+        android:background="@color/black_alpha"
+        android:elevation="20dp"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:paddingBottom="10dp">
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -40,18 +37,35 @@
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-black"
             android:text="Thomb Raider"
-            android:textSize="@dimen/bigtext"
+            android:textSize="@dimen/xbigtext"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textview_realeasedate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:fontFamily="sans-serif-light"
-            android:text="@string/gameactivity_realeasedate"
-            android:textSize="@dimen/mediumtext"
+            android:text="@string/platformactivity_realeasedate"
+            android:textSize="@dimen/smalltext"
             android:textStyle="bold" />
+
+        <ScrollView
+            android:id="@+id/scrollview_description"
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+
+            <TextView
+                android:id="@+id/textview_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-light"
+                android:textSize="@dimen/smalltext" />
+
+        </ScrollView>
 
     </LinearLayout>
 
@@ -59,40 +73,74 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/linearlayout_header"
-        android:background="@color/black"
+        android:elevation="20dp"
         android:gravity="center"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="3dp"
+            android:background="@color/black_alpha"
             android:fontFamily="sans-serif-medium"
-            android:text="Platforms"
-            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/platformactivity_whattoplay"
             android:textSize="@dimen/bigtext" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_platforms"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/black_alpha"
             android:visibility="visible">
 
         </android.support.v7.widget.RecyclerView>
 
-        <ProgressBar
-            android:id="@+id/progressbar_platform"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true" />
+        <TextView
+            android:id="@+id/textview_nogame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_alpha"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="@string/platformactivity_anygame"
+            android:textSize="@dimen/bigtext"
+            android:textStyle="italic"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/linearlayout_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_alpha"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/imageview_photo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_below="@id/imageview_cover"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="-40dp"
-        android:src="@mipmap/ic_launcher" />
+        android:elevation="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/nophoto" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent" />
 
 </RelativeLayout>

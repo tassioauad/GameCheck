@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.tassioauad.gamecatalog.GameCatalogApplication;
 import com.tassioauad.gamecatalog.R;
@@ -42,6 +43,8 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
     ProgressBar progressBar;
     @Bind(R.id.recyclerview_games)
     RecyclerView recyclerViewGames;
+    @Bind(R.id.textview_nogame)
+    TextView textViewNoGame;
 
     private final int NUMBER_OF_COLUMNS = 2;
     private final String BUNDLE_KEY_GAMELIST = "bundle_key_gamelist";
@@ -53,6 +56,13 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
         View view = inflater.inflate(R.layout.fragment_lastsgame, container, false);
         ButterKnife.bind(this, view);
         ((GameCatalogApplication) getActivity().getApplication()).getObjectGraph().plus(new LastsGameViewModule(this)).inject(this);
+
+        textViewNoGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.loadLastsGames();
+            }
+        });
 
         if(savedInstanceState != null && savedInstanceState.getParcelableArrayList(BUNDLE_KEY_GAMELIST) != null) {
             gamesList = savedInstanceState.getParcelableArrayList(BUNDLE_KEY_GAMELIST);
@@ -84,12 +94,15 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
 
     @Override
     public void warnCouldNotLoadGames() {
-
+        textViewNoGame.setVisibility(View.VISIBLE);
+        recyclerViewGames.setVisibility(View.GONE);
     }
 
     @Override
     public void showGames(List<Game> gameList) {
         this.gamesList = gameList;
+        textViewNoGame.setVisibility(View.GONE);
+        recyclerViewGames.setVisibility(View.VISIBLE);
         recyclerViewGames.setAdapter(new GameListAdapter(gameList, new OnItemClickListener<Game>() {
             @Override
             public void onClick(Game game) {

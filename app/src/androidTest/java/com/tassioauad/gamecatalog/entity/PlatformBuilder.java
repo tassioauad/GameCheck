@@ -28,6 +28,8 @@ public class PlatformBuilder {
     private Image image;
 
     private Date releaseDate;
+
+    private String description;
     
     public static PlatformBuilder aPlatform() {
         return new PlatformBuilder()
@@ -74,8 +76,13 @@ public class PlatformBuilder {
         this.releaseDate = releaseDate;
         return this;
     }
-    
+
+    public PlatformBuilder withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
     public Platform build() {
-        return new Platform(id, name, aliases, abbreviation, company, deck, image, releaseDate);
+        return new Platform(id, name, aliases, abbreviation, company, deck, image, releaseDate, description);
     }
 }
