@@ -124,7 +124,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
             Picasso.with(this).load(platform.getImage().getMediumUrl()).placeholder(R.drawable.nophoto).into(imageViewPhoto);
             Picasso.with(this).load(platform.getImage().getSuperUrl()).placeholder(R.drawable.nophoto).into(imageViewCover);
         }
-        if(platform.getDescription() != null) {
+        if(platform.getDescription() != null && !platform.getDescription().equals("<p style=\"\"> </p>")) {
             textViewDescription.setText(Html.fromHtml(platform.getDescription().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
         } else {
             textViewDescription.setVisibility(View.GONE);
