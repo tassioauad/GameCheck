@@ -56,14 +56,7 @@ public class ApiModule {
 
     @Provides
     public GameApi provideGameApi(Context context) {
-        GameSearchLastsAsyncTask gameSearchLastsAsyncTask =
-                new GameSearchLastsAsyncTask(context, provideGameResource(context));
-        GameSearchByNameAsyncTask gameSearchByNameAsyncTask =
-                new GameSearchByNameAsyncTask(context, provideGameResource(context));
-        GameSearchByPlatformAsyncTask gameSearchByPlatformAsyncTask =
-                new GameSearchByPlatformAsyncTask(context, provideGameResource(context));
-
-        return new GameApiImpl(context, gameSearchLastsAsyncTask, gameSearchByNameAsyncTask, gameSearchByPlatformAsyncTask);
+        return new GameApiImpl(context, provideGameResource(context));
     }
 
     @Provides
