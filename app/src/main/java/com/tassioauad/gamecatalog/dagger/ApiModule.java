@@ -61,12 +61,7 @@ public class ApiModule {
 
     @Provides
     public PlatformApi providePlatformApi(Context context) {
-        PlatformSearchByNameAsyncTask platformSearchByNameAsyncTask =
-                new PlatformSearchByNameAsyncTask(context, providePlatformResource(context));
-        PlatformSearchLastsAsyncTask platformSearchLastsAsyncTask =
-                new PlatformSearchLastsAsyncTask(context, providePlatformResource(context));
-
-        return new PlatformApiImpl(context, platformSearchByNameAsyncTask, platformSearchLastsAsyncTask);
+        return new PlatformApiImpl(context, providePlatformResource(context));
 
     }
 

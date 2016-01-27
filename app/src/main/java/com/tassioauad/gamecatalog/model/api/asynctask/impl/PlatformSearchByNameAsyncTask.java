@@ -20,6 +20,7 @@ public class PlatformSearchByNameAsyncTask extends GenericAsyncTask<String, Void
     private PlatformResource platformResource;
     private final String sort = "original_release_date:desc";
     private final String format = "json";
+    private final String filter = "name:";
 
     public PlatformSearchByNameAsyncTask(Context context, PlatformResource platformResource) {
         super(context);
@@ -30,7 +31,7 @@ public class PlatformSearchByNameAsyncTask extends GenericAsyncTask<String, Void
     protected AsyncTaskResult<List<Platform>> doInBackground(String... params) {
 
         try {
-            Response<List<Platform>> response = platformResource.searchByName(getApiKey(), params[0], sort, format).execute();
+            Response<List<Platform>> response = platformResource.searchByName(getApiKey(), filter + params[0].trim(), sort, format).execute();
             switch (response.code()) {
                 case HTTP_OK:
                     return new AsyncTaskResult<>(response.body());

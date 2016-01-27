@@ -15,7 +15,7 @@ public interface PlatformResource {
                                      @Query("sort") String sort, @Query("format") String format);
 
     @GET("/api/platforms/")
-    Call<List<Platform>> searchByName(@Query("api_key") String apiKey, @Query("name") String name,
+    Call<List<Platform>> searchByName(@Query("api_key") String apiKey, @Query("filter") String name,
                                       @Query("sort") String sort, @Query("format") String format);
 
 }
