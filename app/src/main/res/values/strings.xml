@@ -30,5 +30,9 @@
     <string name="searchgamectivity_connectionfailed">OPS! Please, check your internet connection and try again clicking here.</string>
     <string name="searchgameactivity_search">Search a Game</string>
 
+    <!--SearchPlatformActivity -->
+    <string name="searchplatformctivity_anyplatform">OPS! Any Platform :`(</string>
+    <string name="searchplatformctivity_connectionfailed">OPS! Please, check your internet connection and try again clicking here.</string>
+    <string name="searchplatformactivity_search">Search a Platform</string>
 
 </resources>

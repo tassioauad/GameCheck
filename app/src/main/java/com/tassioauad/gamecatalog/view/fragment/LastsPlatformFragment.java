@@ -4,6 +4,7 @@ package com.tassioauad.gamecatalog.view.fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +23,8 @@ import com.tassioauad.gamecatalog.model.entity.Platform;
 import com.tassioauad.gamecatalog.presenter.LastsPlatformPresenter;
 import com.tassioauad.gamecatalog.view.LastsPlatformView;
 import com.tassioauad.gamecatalog.view.activity.PlatformActivity;
+import com.tassioauad.gamecatalog.view.activity.SearchGameActivity;
+import com.tassioauad.gamecatalog.view.activity.SearchPlatformActivity;
 import com.tassioauad.gamecatalog.view.adapter.OnItemClickListener;
 import com.tassioauad.gamecatalog.view.adapter.PlatformListAdapter;
 
@@ -44,6 +47,8 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
     ProgressBar progressBar;
     @Bind(R.id.textview_noplatform)
     TextView textViewNoPlatform;
+    @Bind(R.id.floatingactionbutton_search)
+    FloatingActionButton floatingActionButtonSearch;
 
     private List<Platform> platformList;
     private final String BUNDLE_KEY_PLATFORMLIST = "bundle_key_platformlist";
@@ -60,6 +65,13 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
             @Override
             public void onClick(View v) {
                 presenter.loadLastsPlatforms();
+            }
+        });
+
+        floatingActionButtonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(SearchPlatformActivity.newInstance(getActivity()));
             }
         });
 
