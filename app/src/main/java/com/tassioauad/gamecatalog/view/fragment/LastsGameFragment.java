@@ -3,6 +3,7 @@ package com.tassioauad.gamecatalog.view.fragment;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ import com.tassioauad.gamecatalog.model.entity.Game;
 import com.tassioauad.gamecatalog.presenter.LastsGamePresenter;
 import com.tassioauad.gamecatalog.view.LastsGameView;
 import com.tassioauad.gamecatalog.view.activity.GameActivity;
+import com.tassioauad.gamecatalog.view.activity.SearchGameActivity;
 import com.tassioauad.gamecatalog.view.adapter.GameListAdapter;
 import com.tassioauad.gamecatalog.view.adapter.OnItemClickListener;
 
@@ -45,6 +47,8 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
     RecyclerView recyclerViewGames;
     @Bind(R.id.textview_nogame)
     TextView textViewNoGame;
+    @Bind(R.id.floatingactionbutton_search)
+    FloatingActionButton floatingActionButtonSearch;
 
     private final int NUMBER_OF_COLUMNS = 2;
     private final String BUNDLE_KEY_GAMELIST = "bundle_key_gamelist";
@@ -70,6 +74,13 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
         } else {
             presenter.loadLastsGames();
         }
+
+        floatingActionButtonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(SearchGameActivity.newInstance(getActivity()));
+            }
+        });
 
         return view;
     }

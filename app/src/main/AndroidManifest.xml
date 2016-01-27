@@ -19,7 +19,15 @@
         </activity>
         <activity android:name=".view.activity.GameActivity"/>
         <activity android:name=".view.activity.PlatformActivity"/>
+        <activity android:name=".view.activity.SearchGameActivity">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_game" />
 
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

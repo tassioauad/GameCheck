@@ -15,8 +15,8 @@ public interface GameResource {
                                  @Query("sort") String sort, @Query("format") String format);
 
     @GET("/api/games/")
-    Call<List<Game>> searchByName(@Query("api_key") String apiKey, @Query("name") String name,
-                                  @Query("sort") String sort, @Query("format") String format);
+    Call<List<Game>> searchByFilter(@Query("api_key") String apiKey, @Query("filter") String name,
+                                    @Query("sort") String sort, @Query("format") String format);
 
     @GET("/api/games/")
     Call<List<Game>> searchByPlatform(@Query("api_key") String apiKey, @Query("platforms") Long platformId,

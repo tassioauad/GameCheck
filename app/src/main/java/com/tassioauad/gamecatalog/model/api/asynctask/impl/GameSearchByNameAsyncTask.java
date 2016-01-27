@@ -20,6 +20,7 @@ public class GameSearchByNameAsyncTask extends GenericAsyncTask<String, Void, Li
     private GameResource gameResource;
     private final String sort = "original_release_date:desc";
     private final String format = "json";
+    private final String filter = "name:";
 
     public GameSearchByNameAsyncTask(Context context, GameResource gameResource) {
         super(context);
@@ -30,7 +31,7 @@ public class GameSearchByNameAsyncTask extends GenericAsyncTask<String, Void, Li
     protected AsyncTaskResult<List<Game>> doInBackground(String... params) {
 
         try {
-            Response<List<Game>> response = gameResource.searchByName(getApiKey(), params[0], sort, format).execute();
+            Response<List<Game>> response = gameResource.searchByFilter(getApiKey(), filter + params[0].trim(), sort, format).execute();
             switch (response.code()) {
                 case HTTP_OK:
                     return new AsyncTaskResult<>(response.body());
