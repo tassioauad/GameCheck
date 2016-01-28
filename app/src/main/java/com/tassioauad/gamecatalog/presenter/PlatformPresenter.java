@@ -2,6 +2,7 @@ package com.tassioauad.gamecatalog.presenter;
 
 import com.tassioauad.gamecatalog.model.api.GameApi;
 import com.tassioauad.gamecatalog.model.api.asynctask.ApiResultListener;
+import com.tassioauad.gamecatalog.model.database.PlatformRatingDao;
 import com.tassioauad.gamecatalog.model.entity.Game;
 import com.tassioauad.gamecatalog.model.entity.Platform;
 import com.tassioauad.gamecatalog.view.PlatformView;
@@ -13,15 +14,22 @@ public class PlatformPresenter {
     private PlatformView view;
     private GameApi gameApi;
     private Platform platform;
+    private PlatformRatingDao platformRatingDao;
+    private Float rating;
 
-    public PlatformPresenter(PlatformView view, GameApi gameApi) {
+    public PlatformPresenter(PlatformView view, GameApi gameApi, PlatformRatingDao platformRatingDao) {
         this.view = view;
         this.gameApi = gameApi;
+        this.platformRatingDao = platformRatingDao;
     }
 
     public void init(Platform platform) {
         this.platform = platform;
+        rating = platformRatingDao.getRatingOf(platform);
         view.showPlatform(platform);
+        if(rating != null) {
+            view.showRating(rating);
+        }
     }
 
     public void loadGames() {
@@ -45,6 +53,15 @@ public class PlatformPresenter {
             }
         });
         gameApi.searchByPlatform(platform);
+    }
+
+    public void setRating(float rating) {
+        if(this.rating == null) {
+            platformRatingDao.insert(platform, rating);
+        } else {
+            platformRatingDao.update(platform, rating);
+        }
+        this.rating = rating;
     }
 
 

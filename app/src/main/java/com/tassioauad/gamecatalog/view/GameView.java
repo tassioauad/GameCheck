@@ -12,4 +12,6 @@ public interface GameView {
     void showGame(Game game);
 
     void warnNoPlatform();
+
+    void showRating(float rating);
 }

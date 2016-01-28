@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,6 +66,8 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
     LinearLayout linearLayoutLoading;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.ratingBar)
+    RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,13 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
         } else {
             presenter.loadGames();
         }
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                presenter.setRating(rating);
+            }
+        });
     }
 
     @Override
@@ -177,6 +187,11 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
     @Override
     public void hideLoadingMessage() {
         linearLayoutLoading.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showRating(Float rating) {
+        ratingBar.setRating(rating);
     }
 
 }

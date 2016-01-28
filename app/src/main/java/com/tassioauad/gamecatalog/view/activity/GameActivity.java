@@ -13,6 +13,7 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -58,6 +59,8 @@ public class GameActivity extends AppCompatActivity implements GameView {
     TextView textViewNoPlatform;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.ratingBar)
+    RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,13 @@ public class GameActivity extends AppCompatActivity implements GameView {
 
         Game game = getIntent().getParcelableExtra(INTENT_KEY_GAME);
         presenter.init(game);
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                presenter.setRating(rating);
+            }
+        });
     }
 
     @Override
@@ -131,5 +141,10 @@ public class GameActivity extends AppCompatActivity implements GameView {
     public void warnNoPlatform() {
         recyclerView.setVisibility(View.GONE);
         textViewNoPlatform.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showRating(float rating) {
+        ratingBar.setRating(rating);
     }
 }
