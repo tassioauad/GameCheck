@@ -7,8 +7,6 @@ import com.tassioauad.gamecatalog.entity.PlatformBuilder;
 import com.tassioauad.gamecatalog.model.entity.Game;
 import com.tassioauad.gamecatalog.view.GameView;
 
-import junit.framework.TestCase;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -22,7 +20,7 @@ public class GamePresenterTest extends AndroidTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         view = mock(GameView.class);
-        presenter = new GamePresenter(view);
+        presenter = new GamePresenter(view, gameRatingDao);
     }
 
     public void testInit() {

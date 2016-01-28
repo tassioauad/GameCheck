@@ -17,4 +17,6 @@ public interface PlatformView {
     void showLoadingMessage();
 
     void hideLoadingMessage();
+
+    void showRating(Float rating);
 }
