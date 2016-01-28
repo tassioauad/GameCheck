@@ -58,8 +58,6 @@ public class GameActivity extends AppCompatActivity implements GameView {
     TextView textViewNoPlatform;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.scrollview_description)
-    ScrollView scrollViewDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,9 +123,7 @@ public class GameActivity extends AppCompatActivity implements GameView {
             Picasso.with(this).load(game.getImage().getSuperUrl()).placeholder(R.drawable.nophoto).into(imageViewCover);
         }
         if(game.getDescription() != null && !game.getDescription().equals("<p style=\"\"> </p>")) {
-            textViewDescription.setText(Html.fromHtml(game.getDescription().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
-        } else {
-            scrollViewDescription.setVisibility(View.GONE);
+            textViewDescription.setText(Html.fromHtml(game.getDeck().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
         }
     }
 

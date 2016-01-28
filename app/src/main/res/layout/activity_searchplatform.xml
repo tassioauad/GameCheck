@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_alpha">
+    android:background="@color/darkblue_alpha">
 
     <include
         android:id="@+id/toolbar"
@@ -27,7 +27,7 @@
         android:id="@+id/textview_noplatform"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black_alpha"
+        android:background="@color/darkblue_alpha"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="@string/searchplatformctivity_anyplatform"
@@ -39,7 +39,7 @@
         android:id="@+id/textview_connectionfailed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black_alpha"
+        android:background="@color/darkblue_alpha"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="@string/searchplatformctivity_connectionfailed"

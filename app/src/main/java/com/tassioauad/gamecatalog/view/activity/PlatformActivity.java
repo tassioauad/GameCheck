@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +22,9 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 import com.tassioauad.gamecatalog.GameCatalogApplication;
 import com.tassioauad.gamecatalog.R;
-import com.tassioauad.gamecatalog.dagger.GameViewModule;
 import com.tassioauad.gamecatalog.dagger.PlatformViewModule;
 import com.tassioauad.gamecatalog.model.entity.Game;
 import com.tassioauad.gamecatalog.model.entity.Platform;
-import com.tassioauad.gamecatalog.presenter.GamePresenter;
 import com.tassioauad.gamecatalog.presenter.PlatformPresenter;
 import com.tassioauad.gamecatalog.view.PlatformView;
 import com.tassioauad.gamecatalog.view.adapter.GameListAdapter;
@@ -68,8 +65,6 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
     LinearLayout linearLayoutLoading;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.scrollview_description)
-    ScrollView scrollViewDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,9 +148,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
             Picasso.with(this).load(platform.getImage().getSuperUrl()).placeholder(R.drawable.nophoto).into(imageViewCover);
         }
         if(platform.getDescription() != null && !platform.getDescription().equals("<p style=\"\"> </p>")) {
-            textViewDescription.setText(Html.fromHtml(platform.getDescription().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
-        } else {
-            scrollViewDescription.setVisibility(View.GONE);
+            textViewDescription.setText(Html.fromHtml(platform.getDeck().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
         }
     }
 
@@ -170,7 +163,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
     public void warnFailureToListGames() {
         warnNoGame();
         Toast toast = Toast.makeText(this, R.string.platformactivity_failuretolistgames, Toast.LENGTH_LONG);
-        toast.getView().setBackgroundColor(getColor(R.color.red));
+        toast.getView().setBackgroundColor(getColor(R.color.pink));
         toast.show();
     }
 

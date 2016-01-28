@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_alpha"
+    android:background="@color/black"
     android:orientation="vertical">
 
     <ImageView
@@ -23,17 +23,16 @@
             android:id="@+id/linearlayout_header"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="3dp"
             android:layout_weight="0.6"
-            android:background="@color/black_alpha"
-            android:elevation="20dp"
+            android:background="@color/darkblue_alpha"
             android:orientation="vertical">
 
             <RatingBar
                 android:id="@+id/ratingBar"
-                android:layout_gravity="right"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="right" />
 
             <TextView
                 android:id="@+id/textview_name"
@@ -50,28 +49,21 @@
                 android:id="@+id/textview_realeasedate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
                 android:fontFamily="sans-serif-light"
                 android:text="@string/platformactivity_realeasedate"
                 android:textSize="@dimen/smalltext"
                 android:textStyle="bold" />
 
-            <ScrollView
-                android:id="@+id/scrollview_description"
+            <TextView
+                android:id="@+id/textview_description"
                 android:layout_width="match_parent"
-                android:layout_height="90dp">
-
-                <TextView
-                    android:id="@+id/textview_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="sans-serif-light"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:textSize="@dimen/smalltext"/>
-
-            </ScrollView>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-light"
+                android:textSize="@dimen/smalltext" />
 
         </LinearLayout>
 
@@ -79,7 +71,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
-            android:elevation="20dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -87,18 +78,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
+                android:background="@color/darkblue_alpha"
+                android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:padding="5dp"
-                android:background="@color/black_alpha"
-                android:fontFamily="sans-serif-medium"
                 android:text="@string/platformactivity_whattoplay"
                 android:textSize="@dimen/bigtext" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview_platforms"
                 android:layout_width="match_parent"
-                android:background="@color/black_alpha"
                 android:layout_height="match_parent"
+                android:background="@color/darkblue_alpha"
                 android:visibility="visible">
 
             </android.support.v7.widget.RecyclerView>
@@ -107,19 +98,19 @@
                 android:id="@+id/textview_nogame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black_alpha"
-                android:gravity="center"
-                android:textSize="@dimen/bigtext"
+                android:background="@color/darkblue_alpha"
                 android:fontFamily="sans-serif-light"
-                android:textStyle="italic"
+                android:gravity="center"
                 android:text="@string/platformactivity_anygame"
-                android:visibility="gone"/>
+                android:textSize="@dimen/bigtext"
+                android:textStyle="italic"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/linearlayout_loading"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black_alpha"
+                android:background="@color/darkblue_alpha"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -140,7 +131,7 @@
         android:layout_below="@id/imageview_cover"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="-40dp"
-        android:elevation="70dp"
+        android:elevation="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/nophoto" />
 

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_alpha"
+    android:background="@color/darkblue_alpha"
     android:orientation="vertical">
 
     <ProgressBar
@@ -34,10 +34,11 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingactionbutton_search"
         android:layout_width="wrap_content"
+        android:elevation="12dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:src="@android:drawable/ic_menu_search"
+        android:src="@drawable/ic_search"
         android:layout_margin="10dp"/>
 
 </RelativeLayout>

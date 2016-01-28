@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <color name="blue">#061438</color>
-    <color name="black">#010308</color>
-    <color name="red">#FB3640</color>
-    <color name="red_alpha">#3cFB3640</color>
-    <color name="light_gray">#E2E2E2</color>
-    <color name="light_gray_alpha">#b7e2e2e2</color>
-    <color name="dark_gray">#605F5E</color>
-    <color name="black_alpha">#92030a1d</color>
+    <color name="black">#11121b</color>
+    <color name="blue">#0F7173</color>
+    <color name="darkblue">#2D3047</color>
+    <color name="darkblue_alpha">#922D3047</color>
+    <color name="pink">#F05D5E</color>
+    <color name="white">#FFFFFF</color>
+    <color name="light_gray">#E7ECEF</color>
+    <color name="light_gray_alpha">#b7E7ECEF</color>
 </resources>
