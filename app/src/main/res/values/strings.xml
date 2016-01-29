@@ -1,7 +1,7 @@
 <resources>
 
     <!-- General -->
-    <string name="app_name">Game Catalog</string>
+    <string name="app_name">Game Check</string>
     <string name="giantbombapi_key">04a470fa85f8af6e196aa5fc1364e15d69442cf9</string>
     <string name="giantbombapi_baseurl">http://www.giantbomb.com/api/</string>
     <string name="date_format">MM/dd/yyyy</string>
