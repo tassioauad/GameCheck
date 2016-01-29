@@ -61,6 +61,8 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
     TextView textViewDescription;
     @Bind(R.id.textview_nogame)
     TextView textViewNoGame;
+    @Bind(R.id.textview_failuredTolist)
+    TextView textViewFailuredToList;
     @Bind(R.id.linearlayout_loading)
     LinearLayout linearLayoutLoading;
     @Bind(R.id.toolbar)
@@ -87,6 +89,13 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
         } else {
             presenter.loadGames();
         }
+
+        textViewFailuredToList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.loadGames();
+            }
+        });
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -128,6 +137,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
         this.gameList = gameList;
         textViewNoGame.setVisibility(View.GONE);
         linearLayoutLoading.setVisibility(View.GONE);
+        textViewFailuredToList.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
         recyclerView.setAdapter(new GameListAdapter(gameList, new OnItemClickListener<Game>() {
             @Override
@@ -166,14 +176,15 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
         recyclerView.setVisibility(View.GONE);
         linearLayoutLoading.setVisibility(View.GONE);
         textViewNoGame.setVisibility(View.VISIBLE);
+        textViewFailuredToList.setVisibility(View.GONE);
     }
 
     @Override
     public void warnFailureToListGames() {
-        warnNoGame();
-        Toast toast = Toast.makeText(this, R.string.platformactivity_failuretolistgames, Toast.LENGTH_LONG);
-        toast.getView().setBackgroundColor(getColor(R.color.pink));
-        toast.show();
+        textViewFailuredToList.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+        textViewNoGame.setVisibility(View.GONE);
+        linearLayoutLoading.setVisibility(View.GONE);
     }
 
     @Override
@@ -181,6 +192,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
         recyclerView.setVisibility(View.GONE);
         textViewNoGame.setVisibility(View.GONE);
         linearLayoutLoading.setVisibility(View.VISIBLE);
+        textViewFailuredToList.setVisibility(View.GONE);
     }
 
     @Override

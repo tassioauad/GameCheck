@@ -100,6 +100,18 @@
             android:textStyle="italic"
             android:visibility="gone" />
 
+        <TextView
+            android:id="@+id/textview_failuredTolist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darkblue_alpha"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="@string/platformactivity_failuretolistgames"
+            android:textSize="@dimen/bigtext"
+            android:textStyle="italic"
+            android:visibility="gone" />
+
         <LinearLayout
             android:id="@+id/linearlayout_loading"
             android:layout_width="match_parent"
