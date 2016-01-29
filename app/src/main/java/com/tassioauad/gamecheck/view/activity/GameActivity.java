@@ -13,7 +13,9 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -23,6 +25,7 @@ import com.tassioauad.gamecheck.dagger.GameViewModule;
 import com.tassioauad.gamecheck.model.entity.Game;
 import com.tassioauad.gamecheck.model.entity.Platform;
 import com.tassioauad.gamecheck.presenter.GamePresenter;
+import com.tassioauad.gamecheck.view.FullImageDialogFragment;
 import com.tassioauad.gamecheck.view.GameView;
 import com.tassioauad.gamecheck.view.adapter.OnItemClickListener;
 import com.tassioauad.gamecheck.view.adapter.PlatformListAdapter;
@@ -40,6 +43,7 @@ public class GameActivity extends AppCompatActivity implements GameView {
 
     @Inject
     GamePresenter presenter;
+    private boolean isImageFitToScreen;
     private static final String INTENT_KEY_GAME = "intent_key_game";
 
     @Bind(R.id.recyclerview_platforms)
@@ -72,7 +76,7 @@ public class GameActivity extends AppCompatActivity implements GameView {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Game game = getIntent().getParcelableExtra(INTENT_KEY_GAME);
+        final Game game = getIntent().getParcelableExtra(INTENT_KEY_GAME);
         presenter.init(game);
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -81,6 +85,22 @@ public class GameActivity extends AppCompatActivity implements GameView {
                 presenter.setRating(rating);
             }
         });
+
+        imageViewPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FullImageDialogFragment.newInstance(game.getImage() != null ? game.getImage().getMediumUrl() : null)
+                        .show(getSupportFragmentManager(), "fullimagedialog");
+            }
+        });
+        imageViewCover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FullImageDialogFragment.newInstance(game.getImage() != null ? game.getImage().getSuperUrl() : null)
+                        .show(getSupportFragmentManager(), "fullimagedialog");
+            }
+        });
+
     }
 
     @Override
