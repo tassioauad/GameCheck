@@ -26,6 +26,7 @@ import com.tassioauad.gamecheck.dagger.PlatformViewModule;
 import com.tassioauad.gamecheck.model.entity.Game;
 import com.tassioauad.gamecheck.model.entity.Platform;
 import com.tassioauad.gamecheck.presenter.PlatformPresenter;
+import com.tassioauad.gamecheck.view.FullImageDialogFragment;
 import com.tassioauad.gamecheck.view.PlatformView;
 import com.tassioauad.gamecheck.view.adapter.GameListAdapter;
 import com.tassioauad.gamecheck.view.adapter.OnItemClickListener;
@@ -81,7 +82,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Platform platform = getIntent().getParcelableExtra(INTENT_KEY_PLATFORM);
+        final Platform platform = getIntent().getParcelableExtra(INTENT_KEY_PLATFORM);
         presenter.init(platform);
         if(savedInstanceState != null && savedInstanceState.getParcelableArrayList(BUNDLE_KEY_GAMELIST) != null) {
             gameList = savedInstanceState.getParcelableArrayList(BUNDLE_KEY_GAMELIST);
@@ -101,6 +102,21 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 presenter.setRating(rating);
+            }
+        });
+
+        imageViewPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FullImageDialogFragment.newInstance(platform.getImage() != null ? platform.getImage().getMediumUrl() : null)
+                        .show(getSupportFragmentManager(), "fullimagedialog");
+            }
+        });
+        imageViewCover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FullImageDialogFragment.newInstance(platform.getImage() != null ? platform.getImage().getSuperUrl() : null)
+                        .show(getSupportFragmentManager(), "fullimagedialog");
             }
         });
     }
