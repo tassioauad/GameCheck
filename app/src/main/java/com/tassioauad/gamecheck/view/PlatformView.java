@@ -14,9 +14,9 @@ public interface PlatformView {
 
     void warnFailureToListGames();
 
-    void showLoadingMessage();
+    void showLoading();
 
-    void hideLoadingMessage();
+    void dismissLoading();
 
     void showRating(Float rating);
 }

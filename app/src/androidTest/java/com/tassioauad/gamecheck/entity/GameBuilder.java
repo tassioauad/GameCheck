@@ -11,9 +11,9 @@ import java.util.List;
 
 public class GameBuilder {
 
-    private static final Integer DEFAULT_ID = 999;
+    public static final Integer DEFAULT_ID = 999;
 
-    private static final String DEFAULT_NAME = "raider";
+    public static final String DEFAULT_NAME = "raider";
 
     private Integer id;
 

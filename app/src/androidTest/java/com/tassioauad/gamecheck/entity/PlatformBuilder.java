@@ -9,9 +9,9 @@ import java.util.Date;
 
 public class PlatformBuilder {
 
-    private static final Long DEFAULT_ID = 94l;
+    public static final Long DEFAULT_ID = 94l;
 
-    private static final String DEFAULT_NAME = "Commodore";
+    public static final String DEFAULT_NAME = "Commodore";
 
     private Long id;
 

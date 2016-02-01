@@ -24,7 +24,7 @@ public class SearchPlatformPresenter {
             public void onResult(Object object) {
                 List<Platform> platformList = (List<Platform>) object;
                 if (platformList.size() > 0) {
-                    view.showPlatform(platformList);
+                    view.showPlatforms(platformList);
                 } else {
                     view.warnAnyPlatformFound();
                 }

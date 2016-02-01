@@ -33,7 +33,7 @@ public class PlatformPresenter {
     }
 
     public void loadGames() {
-        view.showLoadingMessage();
+        view.showLoading();
         gameApi.setServiceResultListener(new ApiResultListener() {
             @Override
             public void onResult(Object object) {
@@ -43,13 +43,13 @@ public class PlatformPresenter {
                 } else {
                     view.warnNoGame();
                 }
-                view.hideLoadingMessage();
+                view.dismissLoading();
             }
 
             @Override
             public void onException(Exception exception) {
                 view.warnFailureToListGames();
-                view.hideLoadingMessage();
+                view.dismissLoading();
             }
         });
         gameApi.searchByPlatform(platform);

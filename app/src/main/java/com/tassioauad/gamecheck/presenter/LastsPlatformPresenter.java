@@ -19,10 +19,6 @@ public class LastsPlatformPresenter {
         this.platformApi = platformApi;
     }
 
-    public void init() {
-        loadLastsPlatforms();
-    }
-
     public void loadLastsPlatforms() {
         view.showLoading();
         platformApi.setServiceResultListener(new ApiResultListener() {

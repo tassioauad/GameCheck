@@ -7,7 +7,7 @@ import java.util.List;
 public interface SearchPlatformView {
     void warnFailuredToListPlatforms();
 
-    void showPlatform(List<Platform> platformList);
+    void showPlatforms(List<Platform> platformList);
 
     void warnAnyPlatformFound();
 

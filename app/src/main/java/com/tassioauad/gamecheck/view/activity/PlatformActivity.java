@@ -204,7 +204,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
     }
 
     @Override
-    public void showLoadingMessage() {
+    public void showLoading() {
         recyclerView.setVisibility(View.GONE);
         textViewNoGame.setVisibility(View.GONE);
         linearLayoutLoading.setVisibility(View.VISIBLE);
@@ -212,7 +212,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
     }
 
     @Override
-    public void hideLoadingMessage() {
+    public void dismissLoading() {
         linearLayoutLoading.setVisibility(View.GONE);
     }
 

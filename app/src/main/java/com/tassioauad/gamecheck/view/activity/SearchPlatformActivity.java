@@ -80,7 +80,7 @@ public class SearchPlatformActivity extends AppCompatActivity implements SearchP
             }
             if(savedInstanceState.getParcelableArrayList(BUNDLE_KEY_PLATFORMLIST) != null) {
                 platformList = savedInstanceState.getParcelableArrayList(BUNDLE_KEY_PLATFORMLIST);
-                showPlatform(platformList);
+                showPlatforms(platformList);
             } else if(name != null){
                 presenter.searchByName(name);
             }
@@ -144,7 +144,7 @@ public class SearchPlatformActivity extends AppCompatActivity implements SearchP
     }
 
     @Override
-    public void showPlatform(List<Platform> platformList) {
+    public void showPlatforms(List<Platform> platformList) {
         this.platformList = platformList;
         textViewNoPlatform.setVisibility(View.GONE);
         recyclerViewPlatforms.setVisibility(View.VISIBLE);
