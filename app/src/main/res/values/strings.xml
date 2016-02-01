@@ -1,3 +1,38 @@
 <resources>
-    <string name="app_name">Game Catalog</string>
+
+    <!-- General -->
+    <string name="app_name">Game Check</string>
+    <string name="giantbombapi_key">04a470fa85f8af6e196aa5fc1364e15d69442cf9</string>
+    <string name="giantbombapi_baseurl">http://www.giantbomb.com/api/</string>
+    <string name="date_format">MM/dd/yyyy</string>
+
+    <!-- LastsGamesFragment -->
+    <string name="lastsgamefragment_title">Lasts Games</string>
+    <string name="lastsgamefragment_nogames">OPS! Failured to List Lasts Games :\'(</string>
+
+    <!-- LastsPlatformFragment -->
+    <string name="lastsplatformfragment_title">Lasts Platforms</string>
+    <string name="lastsplatformfragment_noplatform">OPS! Failured to List Lasts Platforms :\'(</string>
+
+    <!--GameActivity-->
+    <string name="gameactivity_realeasedate">Release Date : %s</string>
+    <string name="gameactivity_wheretoplay">Where to Play</string>
+    <string name="gameactivity_anyplatform">OPS! Any Platform :`(</string>
+
+    <!--PlatformActivity-->
+    <string name="platformactivity_realeasedate">Release Date : %s</string>
+    <string name="platformactivity_whattoplay">What to Play</string>
+    <string name="platformactivity_anygame">OPS! Any Game :`(</string>
+    <string name="platformactivity_failuretolistgames">OPS! Failure to list games!</string>
+
+    <!--SearchGameActivity -->
+    <string name="searchgamectivity_anygame">OPS! Any Game :`(</string>
+    <string name="searchgamectivity_connectionfailed">OPS! Please, check your internet connection and try again clicking here.</string>
+    <string name="searchgameactivity_search">Search a Game</string>
+
+    <!--SearchPlatformActivity -->
+    <string name="searchplatformctivity_anyplatform">OPS! Any Platform :`(</string>
+    <string name="searchplatformctivity_connectionfailed">OPS! Please, check your internet connection and try again clicking here.</string>
+    <string name="searchplatformactivity_search">Search a Platform</string>
+
 </resources>
