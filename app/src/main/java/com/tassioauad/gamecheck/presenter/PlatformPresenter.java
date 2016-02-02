@@ -38,7 +38,7 @@ public class PlatformPresenter {
             @Override
             public void onResult(Object object) {
                 List<Game> gameList = (List<Game>) object;
-                if(gameList != null && gameList.size() >0 ) {
+                if(gameList != null && gameList.size() > 0 ) {
                     view.showGames(gameList);
                 } else {
                     view.warnNoGame();

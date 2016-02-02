@@ -6,13 +6,10 @@ import com.tassioauad.gamecheck.entity.GameBuilder;
 import com.tassioauad.gamecheck.entity.PlatformBuilder;
 import com.tassioauad.gamecheck.model.database.GameRatingDao;
 import com.tassioauad.gamecheck.model.entity.Game;
-import com.tassioauad.gamecheck.model.entity.Platform;
 import com.tassioauad.gamecheck.view.GameView;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyFloat;
-import static org.mockito.Matchers.anyListOf;
-import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
