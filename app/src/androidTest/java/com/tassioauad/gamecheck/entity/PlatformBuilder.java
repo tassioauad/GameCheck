@@ -13,6 +13,8 @@ public class PlatformBuilder {
 
     public static final String DEFAULT_NAME = "Commodore";
 
+    public static final String WRONG_NAME = "hooyah";
+
     private Long id;
 
     private String name;
@@ -85,4 +87,5 @@ public class PlatformBuilder {
     public Platform build() {
         return new Platform(id, name, aliases, abbreviation, company, deck, image, releaseDate, description);
     }
+
 }
