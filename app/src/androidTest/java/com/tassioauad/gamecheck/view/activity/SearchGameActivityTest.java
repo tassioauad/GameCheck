@@ -31,7 +31,7 @@ import static org.hamcrest.Matchers.not;
 public class SearchGameActivityTest {
 
     @Rule
-    public ActivityTestRule<SearchGameActivity> mActivityRule =
+    public ActivityTestRule<SearchGameActivity> activityRule =
             new ActivityTestRule<>(SearchGameActivity.class);
 
     @Test
@@ -71,7 +71,7 @@ public class SearchGameActivityTest {
 
     @Test
     public void searchGamesByName_ConnectionFailed() {
-        WifiManager wifi = (WifiManager) mActivityRule.getActivity().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifi = (WifiManager) activityRule.getActivity().getSystemService(Context.WIFI_SERVICE);
         wifi.setWifiEnabled(false);
 
         onView(isAssignableFrom(EditText.class))
@@ -116,7 +116,7 @@ public class SearchGameActivityTest {
             e.printStackTrace();
         }
 
-        mActivityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        activityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         onView(withId(R.id.recyclerview_games)).check(matches(isDisplayed()));
         onView(withId(R.id.progressbar)).check(matches(not(isDisplayed())));

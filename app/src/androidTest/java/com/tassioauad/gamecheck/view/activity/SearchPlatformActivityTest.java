@@ -11,8 +11,6 @@ import android.widget.EditText;
 
 import com.tassioauad.gamecheck.R;
 import com.tassioauad.gamecheck.entity.PlatformBuilder;
-import com.tassioauad.gamecheck.entity.PlatformBuilder;
-import com.tassioauad.gamecheck.model.entity.Platform;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -33,7 +31,7 @@ import static org.hamcrest.Matchers.not;
 public class SearchPlatformActivityTest {
 
     @Rule
-    public ActivityTestRule<SearchPlatformActivity> mActivityRule =
+    public ActivityTestRule<SearchPlatformActivity> activityRule =
             new ActivityTestRule<>(SearchPlatformActivity.class);
 
     @Test
@@ -73,7 +71,7 @@ public class SearchPlatformActivityTest {
 
     @Test
     public void searchPlatformsByName_ConnectionFailed() {
-        WifiManager wifi = (WifiManager) mActivityRule.getActivity().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifi = (WifiManager) activityRule.getActivity().getSystemService(Context.WIFI_SERVICE);
         wifi.setWifiEnabled(false);
 
         onView(isAssignableFrom(EditText.class))
@@ -118,7 +116,7 @@ public class SearchPlatformActivityTest {
             e.printStackTrace();
         }
 
-        mActivityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        activityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         onView(withId(R.id.recyclerview_platforms)).check(matches(isDisplayed()));
         onView(withId(R.id.progressbar)).check(matches(not(isDisplayed())));
