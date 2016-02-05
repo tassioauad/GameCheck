@@ -48,7 +48,7 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
     private static final String BUNDLE_KEY_GAMELIST = "bundle_key_gamelist";
     private List<Game> gameList;
 
-    @Bind(R.id.recyclerview_platforms)
+    @Bind(R.id.recyclerview_games)
     RecyclerView recyclerView;
     @Bind(R.id.textview_name)
     TextView textViewName;
@@ -148,6 +148,13 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
         return intent;
     }
 
+    public static final Intent newInstance(Platform platform) {
+        Intent intent = new Intent();
+        intent.putExtra(INTENT_KEY_PLATFORM, platform);
+
+        return intent;
+    }
+
     @Override
     public void showGames(List<Game> gameList) {
         this.gameList = gameList;
@@ -182,8 +189,11 @@ public class PlatformActivity extends AppCompatActivity implements PlatformView{
             Picasso.with(this).load(platform.getImage().getMediumUrl()).placeholder(R.drawable.nophoto).into(imageViewPhoto);
             Picasso.with(this).load(platform.getImage().getSuperUrl()).placeholder(R.drawable.nophoto).into(imageViewCover);
         }
-        if(platform.getDescription() != null && !platform.getDescription().equals("<p style=\"\"> </p>")) {
-            textViewDescription.setText(Html.fromHtml(platform.getDeck().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
+        if(platform.getDeck() != null) {
+            textViewDescription.setVisibility(View.VISIBLE);
+            textViewDescription.setText(platform.getDeck());
+        } else {
+            textViewDescription.setVisibility(View.GONE);
         }
     }
 

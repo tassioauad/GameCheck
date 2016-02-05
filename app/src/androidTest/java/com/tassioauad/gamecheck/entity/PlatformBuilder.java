@@ -11,6 +11,8 @@ public class PlatformBuilder {
 
     public static final Long DEFAULT_ID = 94l;
 
+    public static final Long WRONG_ID = 999999999999999L;
+
     public static final String DEFAULT_NAME = "Commodore";
 
     public static final String WRONG_NAME = "hooyah";
@@ -37,6 +39,12 @@ public class PlatformBuilder {
         return new PlatformBuilder()
                 .withId(DEFAULT_ID)
                 .withName(DEFAULT_NAME);
+    }
+
+    public static PlatformBuilder aInvalidPlatform() {
+        return new PlatformBuilder()
+                .withId(WRONG_ID)
+                .withName(WRONG_NAME);
     }
 
     public PlatformBuilder withId(Long id) {
