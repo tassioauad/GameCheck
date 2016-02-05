@@ -115,7 +115,6 @@ public class PlatformActivityTest {
 
     }
 
-    //Progressbar Visisble
     @Test
     public void checkingFields_ScreenRotation() {
         String description = "A Platform";
