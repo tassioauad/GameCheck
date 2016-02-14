@@ -23,6 +23,7 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.not;
 
@@ -89,6 +90,13 @@ public class SearchPlatformActivityTest {
         onView(withId(R.id.textview_connectionfailed)).check(matches(isDisplayed()));
 
         wifi.setWifiEnabled(true);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         onView(withId(R.id.textview_connectionfailed)).perform(click());
 
         try {
@@ -106,6 +114,26 @@ public class SearchPlatformActivityTest {
 
     @Test
     public void searchPlatformsByName_AfterScreenRotation() {
+
+        onView(isAssignableFrom(EditText.class))
+                .perform(typeText(PlatformBuilder.DEFAULT_NAME), pressImeActionButton());
+
+        activityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        onView(withId(R.id.recyclerview_platforms)).check(matches(isDisplayed()));
+        onView(withId(R.id.progressbar)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.textview_noplatform)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.textview_connectionfailed)).check(matches(not(isDisplayed())));
+    }
+
+    @Test
+    public void searchPlatformsByName_BeforeScreenRotation() {
 
         onView(isAssignableFrom(EditText.class))
                 .perform(typeText(PlatformBuilder.DEFAULT_NAME), pressImeActionButton());
@@ -138,8 +166,8 @@ public class SearchPlatformActivityTest {
 
         onView(withId(R.id.recyclerview_platforms)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withId(R.id.ratingBar)).check(matches(isDisplayed()));
+        onView(withContentDescription(R.string.abc_action_bar_up_description)).perform(click());
     }
-
 
 
 }
