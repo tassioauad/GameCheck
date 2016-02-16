@@ -1,7 +1,6 @@
 package com.tassioauad.gamecheck.view.activity;
 
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.contrib.RecyclerViewActions;
@@ -14,7 +13,6 @@ import com.tassioauad.gamecheck.entity.GameBuilder;
 import com.tassioauad.gamecheck.entity.ImageBuilder;
 import com.tassioauad.gamecheck.entity.PlatformBuilder;
 import com.tassioauad.gamecheck.model.entity.Game;
-import com.tassioauad.gamecheck.model.entity.Platform;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -68,6 +66,7 @@ public class GameActivityTest {
         onView(withId(R.id.recyclerview_platforms)).check(matches(not(isDisplayed())));
 
     }
+
     @Test
     public void checkingFields_WithPlatform() {
 
