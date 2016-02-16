@@ -104,6 +104,16 @@ public class Image implements Parcelable {
     public Image() {
     }
 
+    public Image(String iconUrl, String mediumUrl, String screenUrl, String smallUrl, String superUrl, String thumbUrl, String tinyUrl) {
+        this.iconUrl = iconUrl;
+        this.mediumUrl = mediumUrl;
+        this.screenUrl = screenUrl;
+        this.smallUrl = smallUrl;
+        this.superUrl = superUrl;
+        this.thumbUrl = thumbUrl;
+        this.tinyUrl = tinyUrl;
+    }
+
     protected Image(Parcel in) {
         this.iconUrl = in.readString();
         this.mediumUrl = in.readString();

@@ -8,11 +8,11 @@
 
     <!-- LastsGamesFragment -->
     <string name="lastsgamefragment_title">Lasts Games</string>
-    <string name="lastsgamefragment_nogames">OPS! Failured to List Lasts Games :\'(</string>
+    <string name="lastsgamefragment_failuredtolistgames">OPS! Failured to List Lasts Games :\' \n Click here to try again(</string>
 
     <!-- LastsPlatformFragment -->
     <string name="lastsplatformfragment_title">Lasts Platforms</string>
-    <string name="lastsplatformfragment_noplatform">OPS! Failured to List Lasts Platforms :\'(</string>
+    <string name="lastsplatformfragment_failuredtolistplatform">OPS! Failured to List Lasts Platforms :\' \n Click here to try again(</string>
 
     <!--GameActivity-->
     <string name="gameactivity_realeasedate">Release Date : %s</string>

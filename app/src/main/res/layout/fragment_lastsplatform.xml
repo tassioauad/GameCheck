@@ -18,17 +18,18 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_platforms"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/textview_noplatform"
+        android:id="@+id/textview_failuredtolistplatform"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="sans-serif-light"
         android:textStyle="italic"
         android:textSize="@dimen/bigtext"
         android:gravity="center"
-        android:text="@string/lastsplatformfragment_noplatform"
+        android:text="@string/lastsplatformfragment_failuredtolistplatform"
         android:visibility="gone"/>
 
     <android.support.design.widget.FloatingActionButton

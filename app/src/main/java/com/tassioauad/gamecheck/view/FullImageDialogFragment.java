@@ -20,7 +20,7 @@ public class FullImageDialogFragment extends DialogFragment {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialogfragment_fullimage, null);
-        ImageView imageViewPhoto = (ImageView) view.findViewById(R.id.imageview_photo);
+        ImageView imageViewPhoto = (ImageView) view.findViewById(R.id.imageview_fullphoto);
         Picasso.with(getActivity()).load(getArguments().getString(BUNDLE_ARG_PHOTOURL))
                 .placeholder(R.drawable.nophoto).into(imageViewPhoto);
         alertDialogBuilder.setView(view);

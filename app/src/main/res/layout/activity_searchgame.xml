@@ -21,7 +21,8 @@
         android:id="@+id/recyclerview_games"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar" />
+        android:layout_below="@+id/toolbar"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/textview_nogame"

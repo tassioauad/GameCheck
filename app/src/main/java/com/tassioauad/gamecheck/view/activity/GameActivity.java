@@ -43,7 +43,6 @@ public class GameActivity extends AppCompatActivity implements GameView {
 
     @Inject
     GamePresenter presenter;
-    private boolean isImageFitToScreen;
     private static final String INTENT_KEY_GAME = "intent_key_game";
 
     @Bind(R.id.recyclerview_platforms)
@@ -121,6 +120,13 @@ public class GameActivity extends AppCompatActivity implements GameView {
         return intent;
     }
 
+    public static final Intent newInstance(Game game) {
+        Intent intent = new Intent();
+        intent.putExtra(INTENT_KEY_GAME, game);
+
+        return intent;
+    }
+
     @Override
     public void showPlataforms(List<Platform> platformList) {
         recyclerView.setAdapter(new PlatformListAdapter(platformList, new OnItemClickListener<Platform>() {
@@ -151,8 +157,11 @@ public class GameActivity extends AppCompatActivity implements GameView {
             Picasso.with(this).load(game.getImage().getMediumUrl()).placeholder(R.drawable.nophoto).into(imageViewPhoto);
             Picasso.with(this).load(game.getImage().getSuperUrl()).placeholder(R.drawable.nophoto).into(imageViewCover);
         }
-        if(game.getDescription() != null && !game.getDescription().equals("<p style=\"\"> </p>")) {
-            textViewDescription.setText(Html.fromHtml(game.getDeck().replace("<h2>", "<h4>").replace("</h2>", "</h4>")));
+        if(game.getDeck() != null) {
+            textViewDescription.setVisibility(View.VISIBLE);
+            textViewDescription.setText(game.getDeck());
+        } else {
+            textViewDescription.setVisibility(View.GONE);
         }
     }
 

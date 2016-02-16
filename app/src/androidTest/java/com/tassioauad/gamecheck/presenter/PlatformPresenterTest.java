@@ -1,4 +1,4 @@
-package com.tassioauad.platformcheck.presenter;
+package com.tassioauad.gamecheck.presenter;
 
 import android.test.AndroidTestCase;
 
@@ -81,10 +81,12 @@ public class PlatformPresenterTest extends AndroidTestCase {
                         apiResultListenerArgumentCaptor.getValue().onResult(gameArrayList);
                         return null;
                     }
-                }).when(gameApi).searchLasts(anyInt());
+                }).when(gameApi).searchByPlatform(any(Platform.class));
                 return null;
             }
         }).when(gameApi).setServiceResultListener(apiResultListenerArgumentCaptor.capture());
+
+        presenter.loadGames();
 
         verify(view, never()).showGames(gameArrayList);
         verify(view, times(1)).warnNoGame();
@@ -105,10 +107,12 @@ public class PlatformPresenterTest extends AndroidTestCase {
                         apiResultListenerArgumentCaptor.getValue().onResult(gameArrayList);
                         return null;
                     }
-                }).when(gameApi).searchLasts(anyInt());
+                }).when(gameApi).searchByPlatform(any(Platform.class));
                 return null;
             }
         }).when(gameApi).setServiceResultListener(apiResultListenerArgumentCaptor.capture());
+
+        presenter.loadGames();
 
         verify(view, times(1)).showGames(gameArrayList);
         verify(view, never()).warnNoGame();
@@ -127,10 +131,13 @@ public class PlatformPresenterTest extends AndroidTestCase {
                         apiResultListenerArgumentCaptor.getValue().onException(new Exception());
                         return null;
                     }
-                }).when(gameApi).searchLasts(anyInt());
+                }).when(gameApi).searchByPlatform(any(Platform.class));
+
                 return null;
             }
         }).when(gameApi).setServiceResultListener(apiResultListenerArgumentCaptor.capture());
+
+        presenter.loadGames();
 
         verify(view, never()).showGames(anyListOf(Game.class));
         verify(view, never()).warnNoGame();
@@ -144,20 +151,22 @@ public class PlatformPresenterTest extends AndroidTestCase {
 
         presenter.setRating(rating);
 
-        verify(platformRatingDao, times(1)).insert(any(Platform.class), rating);
-        verify(platformRatingDao, never()).update(any(Platform.class), rating);
+        verify(platformRatingDao, times(1)).insert(null, rating);
+        verify(platformRatingDao, never()).update(null, rating);
     }
 
     public void testSetRating_RatingNotNull() {
         float firstRating = 1f;
         float secondRating = 2f;
+        Platform platform = PlatformBuilder.aPlatform().build();
         when(platformRatingDao.getRatingOf(any(Platform.class))).thenReturn(firstRating);
 
-        presenter.init(PlatformBuilder.aPlatform().build());
+
+        presenter.init(platform);
         presenter.setRating(secondRating);
 
-        verify(platformRatingDao, never()).insert(any(Platform.class), secondRating);
-        verify(platformRatingDao, times(1)).update(any(Platform.class), secondRating);
+        verify(platformRatingDao, never()).insert(platform, secondRating);
+        verify(platformRatingDao, times(1)).update(platform, secondRating);
     }
     
 }

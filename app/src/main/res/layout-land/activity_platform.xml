@@ -86,7 +86,7 @@
                 android:textSize="@dimen/bigtext" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerview_platforms"
+                android:id="@+id/recyclerview_games"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/darkblue_alpha"

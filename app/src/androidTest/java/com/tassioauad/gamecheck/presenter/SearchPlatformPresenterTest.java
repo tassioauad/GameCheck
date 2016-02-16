@@ -2,7 +2,6 @@ package com.tassioauad.gamecheck.presenter;
 
 import android.test.AndroidTestCase;
 
-import com.tassioauad.gamecheck.entity.GameBuilder;
 import com.tassioauad.gamecheck.entity.PlatformBuilder;
 import com.tassioauad.gamecheck.model.api.PlatformApi;
 import com.tassioauad.gamecheck.model.api.asynctask.ApiResultListener;

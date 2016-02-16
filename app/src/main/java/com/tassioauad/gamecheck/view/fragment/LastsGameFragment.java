@@ -41,8 +41,8 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
     ProgressBar progressBar;
     @Bind(R.id.recyclerview_games)
     RecyclerView recyclerViewGames;
-    @Bind(R.id.textview_nogame)
-    TextView textViewNoGame;
+    @Bind(R.id.textview_failuredtolistgame)
+    TextView textViewFailuredToListGame;
     @Bind(R.id.floatingactionbutton_search)
     FloatingActionButton floatingActionButtonSearch;
 
@@ -57,7 +57,7 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
         ButterKnife.bind(this, view);
         ((GameCatalogApplication) getActivity().getApplication()).getObjectGraph().plus(new LastsGameViewModule(this)).inject(this);
 
-        textViewNoGame.setOnClickListener(new View.OnClickListener() {
+        textViewFailuredToListGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.loadLastsGames();
@@ -84,7 +84,7 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         if(gamesList != null) {
-            outState.putParcelableArrayList(BUNDLE_KEY_GAMELIST, new ArrayList<Game>(gamesList));
+            outState.putParcelableArrayList(BUNDLE_KEY_GAMELIST, new ArrayList<>(gamesList));
         }
         super.onSaveInstanceState(outState);
     }
@@ -92,6 +92,9 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
     @Override
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
+        recyclerViewGames.setVisibility(View.GONE);
+        textViewFailuredToListGame.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -101,14 +104,14 @@ public class LastsGameFragment extends Fragment implements LastsGameView {
 
     @Override
     public void warnCouldNotLoadGames() {
-        textViewNoGame.setVisibility(View.VISIBLE);
+        textViewFailuredToListGame.setVisibility(View.VISIBLE);
         recyclerViewGames.setVisibility(View.GONE);
     }
 
     @Override
     public void showGames(List<Game> gameList) {
         this.gamesList = gameList;
-        textViewNoGame.setVisibility(View.GONE);
+        textViewFailuredToListGame.setVisibility(View.GONE);
         recyclerViewGames.setVisibility(View.VISIBLE);
         recyclerViewGames.setAdapter(new GameListAdapter(gameList, new OnItemClickListener<Game>() {
             @Override

@@ -42,8 +42,8 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
     RecyclerView recyclerViewPlatforms;
     @Bind(R.id.progressbar)
     ProgressBar progressBar;
-    @Bind(R.id.textview_noplatform)
-    TextView textViewNoPlatform;
+    @Bind(R.id.textview_failuredtolistplatform)
+    TextView textViewFailuredToListPlatform;
     @Bind(R.id.floatingactionbutton_search)
     FloatingActionButton floatingActionButtonSearch;
 
@@ -58,7 +58,7 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
         ButterKnife.bind(this, view);
         ((GameCatalogApplication) getActivity().getApplication()).getObjectGraph().plus(new LastsPlatformViewModule(this)).inject(this);
 
-        textViewNoPlatform.setOnClickListener(new View.OnClickListener() {
+        textViewFailuredToListPlatform.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.loadLastsPlatforms();
@@ -93,12 +93,15 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
     @Override
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
+        recyclerViewPlatforms.setVisibility(View.GONE);
+        textViewFailuredToListPlatform.setVisibility(View.GONE);
     }
 
     @Override
     public void showPlatforms(List<Platform> platformList) {
         this.platformList = platformList;
-        textViewNoPlatform.setVisibility(View.GONE);
+        textViewFailuredToListPlatform.setVisibility(View.GONE);
+        recyclerViewPlatforms.setVisibility(View.VISIBLE);
         recyclerViewPlatforms.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerViewPlatforms.setAdapter(new PlatformListAdapter(platformList, new OnItemClickListener<Platform>() {
             @Override
@@ -117,6 +120,6 @@ public class LastsPlatformFragment extends Fragment implements LastsPlatformView
     @Override
     public void warnCouldNotLoadPlatforms() {
         recyclerViewPlatforms.setVisibility(View.GONE);
-        textViewNoPlatform.setVisibility(View.VISIBLE);
+        textViewFailuredToListPlatform.setVisibility(View.VISIBLE);
     }
 }

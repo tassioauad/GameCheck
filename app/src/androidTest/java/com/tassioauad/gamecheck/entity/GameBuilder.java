@@ -15,6 +15,8 @@ public class GameBuilder {
 
     public static final String DEFAULT_NAME = "raider";
 
+    public static final String WRONG_NAME = "hooyah";
+
     private Integer id;
 
     private String name;
