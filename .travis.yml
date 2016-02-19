@@ -1,13 +1,12 @@
 language: android
 android:
   components:
-    - platform-tools
+    - tools
     - build-tools-23.0.2
     - android-23
     - extra-android-m2repository
 
-script:
-   - ./gradlew build connectedCheck
+script: "./gradlew clean assemble check generateReleaseJavadoc --info --stacktrace"
    
 before_install:
  - chmod +x gradlew
