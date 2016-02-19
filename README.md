@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/tassioauad/GameCheck/badge.svg?branch=master)](https://coveralls.io/github/tassioauad/GameCheck?branch=master) [![Build Status](https://travis-ci.org/tassioauad/GameCheck.svg?branch=master)](https://travis-ci.org/tassioauad/GameCheck)
+[![codecov.io](https://codecov.io/github/tassioauad/GameCheck/coverage.svg?branch=master)](https://codecov.io/github/tassioauad/GameCheck?branch=master)  [![Build Status](https://travis-ci.org/tassioauad/GameCheck.svg?branch=master)](https://travis-ci.org/tassioauad/GameCheck)
 
 # GameCheck
 A simple Android application to search videogames and its games. It aims to test new frameworks version and show some skills. I’ve developed this project using MVP architecture and I’ve “programmed to an interface” to be able to do inversion of control. My view layer is the more passive as possible and in this way I can focus my unit tests on presenter and model layers. I like to strongly separate each layer and charge the presenter to call the other layers.
