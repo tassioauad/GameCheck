@@ -6,7 +6,7 @@ android:
     - android-23
     - extra-android-m2repository
 
-script: "./gradlew clean assemble check generateReleaseJavadoc --info --stacktrace"
+script: "./gradlew clean assemble check --info --stacktrace"
    
 before_install:
  - chmod +x gradlew
