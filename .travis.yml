@@ -10,3 +10,6 @@ script: "./gradlew clean assemble check --info --stacktrace"
    
 before_install:
  - chmod +x gradlew
+ - pip install --user codecov
+after_success:
+  - codecov
