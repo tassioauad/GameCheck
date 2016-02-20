@@ -21,6 +21,5 @@ script:
   - ./gradlew connectedCheck
 before_install:
   - pip install --user codecov
- - chmod +x gradlew
 after_success:
   - codecov
