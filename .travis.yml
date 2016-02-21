@@ -1,12 +1,5 @@
-sudo: false
 language: android
 jdk: oraclejdk7
-before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-cache:
-  directories:
-    - node_modules
-    - $HOME/.gradle/caches/
 
 android:
   components:
@@ -48,8 +41,9 @@ before_script:
 
 script:
   - echo $ADB_INSTALL_TIMEOUT
+  - ./gradlew build jacocoTestReport assembleAndroidTest
   - android list target
-  - ./gradlew connectedAndroidTest
+  - ./gradlew connectedCheck
   
 before_install:
   - chmod +x gradlew
