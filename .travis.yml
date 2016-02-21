@@ -41,9 +41,8 @@ before_script:
 
 script:
   - echo $ADB_INSTALL_TIMEOUT
-  - ./gradlew build jacocoTestReport assembleAndroidTest
-  - android list target
-  - ./gradlew connectedCheck
+  - ./gradlew build jacocoTestReport assembleAndroidTest --stacktrace
+  - ./gradlew connectedCheck --stacktrace
   
 before_install:
   - chmod +x gradlew
