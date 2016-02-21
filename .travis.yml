@@ -1,52 +1,64 @@
 language: android
-jdk: oraclejdk7
 
-android:
-  components:
-    - platform-tools
-    - tools
-    
-    # The BuildTools version used by your project
-    - build-tools-23.0.2
+sudo: false
 
-    # The SDK version used to compile your project
-    - android-23
+before_cache:
+  - rm -f ${TRAVIS_BUILD_DIR}/gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+    - ${TRAVIS_BUILD_DIR}/gradle/caches/
+    - ${TRAVIS_BUILD_DIR}/gradle/wrapper/dists/
 
-    # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-
-    # Specify at least one system image,
-    # if you need to run emulator(s) during your tests
-    # - sys-img-armeabi-v7a-android-21
-    - sys-img-armeabi-v7a-android-23
-
-  licenses:
-    - 'android-sdk-license-.+'
+notifications:
+  email: false
 
 env:
   global:
-    # install timeout in minutes (2 minutes by default)
-    - ADB_INSTALL_TIMEOUT=8
+    - INSTALL_PKGS='build-tools-23.0.2,android-23'
+    - UPDATE_PKGS='platform-tools,tools,extra-android-m2repository,extra-google-m2repository'
+    - GRADLE_USER_HOME="${TRAVIS_BUILD_DIR}/gradle"
+    - ADB_INSTALL_TIMEOUT=8 # minutes (2 minutes by default)
+    - AVD_DEBUG='init,avd_config,nand_limits,keys,adb,adbserver,adbclient'
+    - ANDROID_LOG_TAGS='NetworkStats:S dalvikvm:S Zygote:S Resources:S *:D'
+    - ANDROID_SERIAL='emulator-5554'
 
+matrix:
+  include:
+    - env: AVD_TARGET=android-15
+    - env: AVD_TARGET=android-17
+    - env: AVD_TARGET=android-19
+    - env: AVD_TARGET=android-21
+    - env: AVD_TARGET=android-23
+           TARGET_PKGS=sys-img-armeabi-v7a-android-23
+#    - env: AVD_TARGET='Google Inc.:Google APIs:21' AVD_TAG=google_apis
+#           TARGET_PKGS=addon-google_apis-google-21,sys-img-armeabi-v7a-addon-google_apis-google-21
+  allow_failures:
+    - env: AVD_TARGET=android-23
+           TARGET_PKGS=sys-img-armeabi-v7a-android-23
+#    - env: AVD_TARGET='Google Inc.:Google APIs:21' AVD_TAG=google_apis
+#           TARGET_PKGS=addon-google_apis-google-21,sys-img-armeabi-v7a-addon-google_apis-google-21
+  fast_finish: true
 
-# Emulator Management: Create, Start and Wait
-before_script:
-  - echo no | android create avd --force --name test --target android-23 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb devices
-  - adb shell input keyevent 82 &
-
-script:
-  - echo $ADB_INSTALL_TIMEOUT
-  - ./gradlew build jacocoTestReport assembleAndroidTest --stacktrace
-  - ./gradlew connectedCheck --stacktrace
-  
 before_install:
+  - ./execute install-and-update-sdk
+  - ./excrecute create-and-start-device wait-for-device-online
   - chmod +x gradlew
   - pip install --user codecov
+
+install:
+  - ./gradlew --version # show version and download Gradle Wrapper when is not present in cache
+  - ./gradlew clean # clean project and download Android dependencies when are not present in cache
+  - ./gradlew assemble
+
+before_script:
+  - ./execute wait-for-device-ready
+  
+script:
+  - ./gradlew build jacocoTestReport assembleAndroidTest --stacktrace
+  - ./gradlew connectedCheck --stacktrace
+
+after_script:
+  - cat ${TRAVIS_BUILD_DIR}/ui/espresso/*/app/build/outputs/androidTest-results/connected/* # logs
   
 after_success:
   - codecov
