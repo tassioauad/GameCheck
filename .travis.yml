@@ -2,11 +2,10 @@ language: android
 sudo: false
 jdk: oraclejdk7
 env:
-  matrix:
-    - ANDROID_TARGET=android-23 ANDROID_ABI=armeabi-v7a
   global:
-    # wait up to 10 minutes for adb to connect to emulator
-    - ADB_INSTALL_TIMEOUT=10
+    - ANDROID_API_LEVEL=21
+    - ANDROID_ABI=google_apis/armeabi-v7a
+    - ADB_INSTALL_TIMEOUT=20 # wait up to 20 minutes for adb to connect to emulator
 
 android:
   components:
@@ -43,7 +42,7 @@ before_install:
   - pip install --user codecov
 
 before_script:
-  - echo no | android create avd --force --name test --target $ANDROID_TARGET --abi $ANDROID_ABI
+  - echo no | android create avd --force -n test -t "Google Inc.:Google APIs:"$ANDROID_API_LEVEL --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-audio -no-window &
 
 script:
