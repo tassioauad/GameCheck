@@ -21,7 +21,7 @@ android:
   - extra-android-support
 
   # Emulator for the tests
-  - sys-img-armeabi-v7a-android-18
+  - sys-img-armeabi-v7a-android-23
 
 cache:
   directories:
