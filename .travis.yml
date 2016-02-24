@@ -5,15 +5,15 @@ env:
   matrix:
     - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
   global:
-    # wait up to 8 minutes for adb to connect to emulator
-    - ADB_INSTALL_TIMEOUT=8
+    # wait up to 10 minutes for adb to connect to emulator
+    - ADB_INSTALL_TIMEOUT=10
 
 android:
   components:
   - platform-tools
   - tools
-  - build-tools-21.1.2
-  - android-21
+  - build-tools-23.0.2
+  - android-23
 
   # Additional components
   - extra-google-m2repository
@@ -53,12 +53,6 @@ script:
   - adb shell input keyevent 82 &
   - ./gradlew connectedAndroidTest -PdisablePreDex --continue --stacktrace
   - rm /home/travis/.gradle/caches/2.8/plugin-resolution/cache.properties.lock
-  
-branches:
-  only:
-    - master
-    - beta
-    - alpha
 
 after_success:
   - ./gradlew jacocoFullReport
